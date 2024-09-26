@@ -1,0 +1,21 @@
+\section{The ZFOURGE Survey} \label{Sec: The ZFOURGE Survey}
+\subsection{Overview}
+Our analysis is based on galaxies from the 2017 release\footnote{Available for download at \href{https://zfourge.tamu.edu/}{zfourge.tamu.edu.}} of the ZFOURGE survey \citep{straatman_fourstar_2016}. ZFOURGE consists of approximately 70,000 galaxies at redshifts greater than 0.1 covering three major 11$\times$11 arcminute fields: the Chandra Deep Field South (CDFS) \citep{giacconi_chandra_2002}, the field observed by the Cosmic Evolution Survey (COSMOS) \citep{scoville_cosmic_2007}, and the CANDELS Ultra Deep Survey (UDS) \citep{lawrence_ukirt_2007}. These galaxies were observed using the near-infrared FourStar imager \citep{persson_fourstar_2013} mounted on the 6.5-m Magellan Baade Telescope at the Las Campanas Observatory in Chile. 
+
+ZFOURGE employs deep near-infrared imaging with multiple medium-band filters (\textit{J}$_{1}$, \textit{J}$_2$, \textit{J}$_{3}$, \textit{H}$_{l}$, \textit{H}$_{s}$) and a broad-band \textit{K}$_{s}$ filter. The imaging spans 1.0 to 1.8 $\mu$m and achieves 5$\sigma$ point-source limiting depths of 26 AB mag in the \textit{J} medium-bands and 25 AB mag in the \textit{H} and \textit{K}$_{s}$ bands \citep{spitler_first_2012}. These filters yield well-constrained photometric redshifts, particularly effective for sources within the redshift range of 1 to 4 \citep{spitler_first_2012}. ZFOURGE data is supplemented by public data from HST/WFC3 F160W and F125W imaging from the CANDELS survey, as well as data from Spitzer/Infrared Array Camera (IRAC) and Herschel/Photodetector Array Camera and Spectrometer (PACS). For a detailed description of the data and methodology, refer to \cite{straatman_fourstar_2016}.
+
+\subsection{Sample Selection}
+To ensure the selection of high-quality galaxies and minimise errors in our analysis, we apply a quality flag \texttt{Use=1}, as defined by \cite{straatman_fourstar_2016}. This flag selects galaxies with reliable photometry and redshift measurements. After applying this quality cut, our sample is reduced to 37,647 galaxies. We further refine the sample by removing sources with unphysical bolometric luminosities ($L_{bol} < 0$), yielding a final sample of 22,967 galaxies.
+
+Next, we use the ZFOURGE AGN catalogues \citep{cowley_zfourge_2016} to identify and remove 552 AGN-dominated sources from the ZFOURGE sample, although these sources are retained for further AGN analysis with CIGALE. The ZFOURGE sample spans $0<z<6$ as only 28 galaxies greater than $z=6$ exist in our reduced dataset. This data range enables us to observe the evolution of galaxies during some of the most critical cosmic periods, specifically around $1 < z < 3$ \citep{gruppioni_modelling_2011, wylezalek_galaxy_2014} where galaxy luminosity density peaks \citep{assef_mid-ir-_2011}. 
+
+% \textcolor{red}{is this paragraph even necessary? I feel like it could be deleted entirely.} We use the UVJ colour-colour diagram to differentiate between quiescent and star-forming galaxies by selecting a quiescent galaxy mask with equation \ref{EQ: UVJ} \citep{cowley_zfourge_2016}. \textcolor{red}{better reference?}. Where U, V, \& J are the rest-frame Johnson U, V and 2MASS J filters respectively. \citep{straatman_fourstar_2016}. Star-forming galaxies are selected by taking the inverse of the quiescent galaxy mask.
+
+% \begin{equation}
+%     \label{EQ: UVJ}
+%     \begin{split}
+%         & U-V > 1.3, \\
+%         & V-J < 1.6, \\
+%         & U-V > 0.88 \times (V-J) + 0.59
+%     \end{split}
+% \end{equation}

@@ -1,0 +1,37 @@
+\section{Conclusion}
+
+We utilised ZFOURGE data as inputs for CIGALE to separate the SF and AGN components of the infrared spectral energy distribution to create and analyse their respective luminosity functions. Our results are summarised as follows:
+
+\begin{enumerate}[(i)]
+    \item We first generate LFs of ZFOURGE galaxies from a sub-sample of 16,154 galaxies that accounted for incompleteness and bias across a variety of redshift bins ranging from $0<z<6$.
+    
+    \item After CIGALE decomposition, we find 10,404 sources (46\% of the reduced sample) with a significant AGN fraction ($F_{AGN} > 0.1$). This reduces to 7,287 sources (32\%) after incompleteness and bias are accounted for. In context with AGN dominant sources removed in ZFOURGE by \cite{cowley_zfourge_2016}, simple MIR colour-colour selection diagnostics are insufficient to identify low luminosity AGN which we show significantly influences galaxy samples.
+    
+    \item We find that CIGALE SF LFs are better fit with a Schechter function, as predicted by \cite{wu_mid-infrared_2011, fu_decomposing_2010}. Although there is minor evidence that Saunders could fit better, brighter SF galaxies at higher redshifts are required to confirm. 
+
+    \item A peak and turnover in the evolution of CIGALE SF $L^{*}$ is found at $z \approx 2$ coinciding with the peak of cosmic star formation. Similarly, SF LD is also seen to peak and decline above $z\approx2$. This agrees with established literature and provides good evidence supporting our CIGALE results. Importantly, no turnover in ZFOURGE LD was found, highlighting the importance of SED decomposition.
+    
+    \item A turn over in $L^{*}$ (bottom) and $\phi^{*}$ (peak) is seen for CIGALE AGN at $z \approx 1$. However, the AGN LD is not found to change significantly as the simultaneous change in parameters are thought to mostly balance out the difference. \cite{delvecchio_tracing_2014} finds a similar trend at the same time for their AGN $L^{*}$. \cite{katsianis_evolution_2017} also shows AGN feedback significantly affects SF at $z<1$. We have found reliable evidence that $z\approx1$ is a significant evolutionary epoch for AGN evolution. 
+    
+    \item In context, the time between the peak of SF $L^{*}$ ($z\approx2$) and the bottom of AGN $L^{*}$ ($z\approx1$) represents $\approx$ 2.5 --- 3 Gyrs of evolution. SF $\phi^{*}$ has increased at the same rate across all cosmic time and has yet to peak conclusively, but $z\approx0.5$ is a possible candidate. On the other-hand, AGN $\phi^{*}$ reaches a peak at $z\approx1$ and a local minimum at $z\approx0.5$, also representing $\approx$ 2.5 --- 3 Gyrs of evolution. This is evidence of an AGN-SF feedback mechanism which also appears to be cyclical. 
+
+    \item The space density evolution of luminosity classes for SFG and AGN are very different. LIRGs and ULIRGs increase in number density and peak at $z \approx 2$ before rapidly declining to the present day. SF FIRGs evolve similarly across fainter luminosities and peak at a lower redshift. The faintest FIRGs have yet to peak in number density. AGN number densities peak much earlier in the universe's history than SF counterparts. Luminous and ultraluminous AGN have been declining since at least $z \approx 3$. There is a strong correlation between peak AGN density and luminosity. Fainter AGN clearly peak much later in the universe and have been declining since $z \approx 2$. This shows a clear \textit{downsizing} effect.
+
+    \item From high redshift until $z\approx2$, SFG form with increasing brightness and consume a larger fraction of the available gas supply. It follows that SFG form at a roughly constant rate across all of cosmic time, just not as big and bright at $z<2$ as the gas supply becomes increasingly exhausted. This is reflected in our class evolution results and is the likely reason behind the \textit{downsizing} effect.
+
+    \item Conversely, AGN are brightest at the beginning of time and decline in brightness at a constant rate until $z\approx1$, where AGN power increases until $z\approx0.5$ before declining again. This reflects a period where the available gas supply shifted to fueling AGN growth.
+\end{enumerate}
+
+These results indicate a feedback scenario with $\approx$ 2.5 --- 3 Gyrs of evolution between each cycle. The available gas supply favoured SFG from high redshift until $z\approx2$ when the supply becomes increasingly exhausted. From $1<z<2$, the remaining gas was split into forming fainter stars and falling inwards towards the central SMBH. From $0.5<z<1$, AGN power significantly increased and consumed large fractions of the remaining gas to fuel itself, leaving even less for SF. 
+
+\section*{Acknowledgements}
+This research was supported by an Australian Government Research Training Program (RTP) Scholarship.
+
+\section*{Data Availability}
+Python notebooks and scripts that analysed the data are available on GitHub at \url{https://github.com/daniel-lyon/MPhil-Code}
+
+% \item \textcolor{red}{do i talk about this here?} Our luminosity density values are found to elevated above the literature. When recalculating $\rho_{IR}$ from different authors, we find our method consistently overestimates luminosity density by a factor of $\approx 2.2$. Scaling all our densities down by this factor places the ZFOURGE $\rho_{IR}$ to be well aligned with the literature until $z>2$ where we do not have a turnover. CIGALE SF $\rho_{IR}$, when scale down, agrees well with the \cite{madau_cosmic_2014} line until $z>3$ where our densities decline much faster. AGN densities are higher than \cite{symeonidis_agn_2021} but this is attributed to their LFs based on \cite{aird_evolution_2010} X-ray LFs missing dust enshrouded and compton thick AGN.
+
+% We collate our results together and formulate a complete picture of the evolution of galaxies and the co-evolution of AGN. The parameter evolution and LD density evolution of both SFG and AGN are connected with $z\approx2$ being the most significant evolutionary epoch. 
+
+% However, because the gas supply was so low at this point in time, the rate that new AGN forms declined rapidly.

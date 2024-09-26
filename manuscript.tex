@@ -1,23 +1,29 @@
+ % Preamble
 \documentclass{pas}
 \usepackage{multirow}
 \usepackage{subfiles}
-\usepackage[svgnames]{xcolor}
-
 \usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{enumerate}
 
 \begin{document}
 
-\subfile{Sections/Title Page}
-\subfile{Sections/Introduction}
-\subfile{Sections/Data}
-\subfile{Sections/Analysis}
-\subfile{Sections/Results}
-\subfile{Sections/Discussion}
-\subfile{Sections/Conclusions}
-\subfile{Sections/Acknowledgements}
-\subfile{Sections/Data Availability}
+% Sections
+\subfile{Sections/0 - Title Page}
+\subfile{Sections/1 - Introduction}
+\subfile{Sections/2 - ZFOURGE}
+\subfile{Sections/3 - CIGALE}
+\subfile{Sections/4 - Luminosity Functions}
+\subfile{Sections/5.1 - IR LF}
+\subfile{Sections/5.2 - Param Evo}
+\subfile{Sections/5.3 - Luminosity Density}
+\subfile{Sections/5.4 - Class Density}
+\subfile{Sections/6 - Conclusions}
 
+% References
 \bibliography{references.bib}
-\bibliographystyle{paslike}
+\bibliographystyle{aasjournal}
 
 \end{document}
