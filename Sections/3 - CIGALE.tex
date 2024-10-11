@@ -1,65 +1,87 @@
 \section{Decomposing Galaxy SEDs} \label{Sec: CIGALE}
+The public version of the ZFOURGE catalogues has utilised \texttt{EAZY} \citep{brammer_eazy_2008} and \texttt{FAST} \citep{kriek_ultra-deep_2009} for parameterising galaxy properties, primarily focusing on photometric redshifts, stellar masses, and SFRs. However, while effective, these methods provide a more generalised view of galaxy properties without entirely disentangling the contributions from different physical components within each galaxy, such as SF regions and AGN. To address this limitation, we employ the SED fitting software CIGALE \citep{boquien_cigale_2019}, which enables the decomposition of observed light from galaxies into distinct components, including SF and AGN activity. This method builds on the work by \cite{cowley_decoupled_2018}, incorporating additional photometric coverage and an updated parameter space to better quantify AGN contributions.
 
-We seek to expand upon our investigation of LFs within ZFOURGE by focusing on the contributions of SF regions and AGN within the sample's galaxies. The public version of the ZFOURGE catalogues has utilised \texttt{EAZY} \citep{brammer_eazy_2008} and \texttt{FAST} \citep{kriek_ultra-deep_2009} for parameterising galaxy properties, primarily focusing on photometric redshifts, stellar masses, and SFRs. However, while effective, these methods provide a more generalised view of galaxy properties without entirely disentangling the contributions from different physical components within each galaxy.
+\subsection{CIGALE Methodology and Parameter Space} \label{Sec: CIGALE_Parameters}
+CIGALE performs multi-component SED fitting to derive galaxy properties by integrating our photometry from 0.2 $\mu$m to 160 $\mu$m across the CDFS field and up to 24 $\mu$m for COSMOS and UDS. This broader wavelength coverage allows for a more complete and precise decomposition of galaxy light into SF and AGN components. The decomposition uses a range of parameter values (see Table \ref{tab:parameter_space}), allowing for flexible modelling of star formation histories (SFH), dust attenuation, AGN torus contributions, and other factors. We also incorporate the SKIRTOR AGN torus model \citep{stalevski_dust_2016}, which better handles clumpy dust distributions and polar dust extinction, providing an accurate characterisation of AGN emission.
 
-To improve upon this, we employ SED fitting using CIGALE, \citep{boquien_cigale_2019} a more sophisticated approach that allows for the decomposition of observed light from galaxies into distinct components, such as SF and AGN activity. This method not only continues to derive critical parameters similar to \texttt{EAZY} and \texttt{FAST} $-$ but it does so with enhanced precision and additional capabilities \citep{boquien_cigale_2019}. Notably, CIGALE allows us to quantify the AGN contribution in each galaxy, which was not addressed previously in ZFOURGE. 
+\subsection{Bolometric IR Luminosity Derivation} \label{Sec: IR_Luminosity}
+Understanding the total IR energy output of galaxies is essential for tracing both SF and AGN activity, particularly in dusty environments where much of the energy is re-emitted in the IR \citep{fu_decomposing_2010}. By estimating the bolometric IR luminosity, we can gain insights into the contribution of these processes across cosmic time. 
 
-By using this method, we are able to construct more accurate LFs for both SF and AGN components, reducing the bias against low-luminosity AGN that often skews traditional analyses. While our approach builds on the work detailed in \cite{cowley_decoupled_2018}, it includes several key advancements. Specifically, we expand the methodology to incorporate all available photometric bands from the ZFOURGE survey, covering wavelengths from 0.2 $\mu$m to 160 $\mu$m in the CDFS field and up to 24 $\mu$m in COSMOS and UDS. This broader wavelength coverage allows for a more complete and precise decomposition of galaxy light into SF and AGN components.
+For the ZFOURGE total LF sample, we adopted the approach in \cite{straatman_fourstar_2016} where the averaged \cite{wuyts_fireworks_2008} template was fit to the 24-160 $\mu$m photometry to estimate the total bolometric IR luminosity. This method provides a robust measure of the IR emission for purely star-forming galaxies without AGN contamination.
 
-In addition, we employ an updated parameter space that includes the SKIRTOR AGN torus model \citep{stalevski_dust_2016}, which better accounts for clumpy dust distributions and polar dust extinction. These enhancements, combined with the expanded photometric data, enable us to more effectively quantify AGN contributions and produce more accurate galaxy property estimates. Table \ref{tab:parameter_space} outlines the specific parameters used in this analysis, providing the details of our refined methodology.
+For the Decomposed SF and AGN LF samples, we derive luminosities through a different approach. CIGALE performs SED decomposition on the entire galaxy emission, using its integrated models to separate the total luminosity into distinct stellar, dust, and AGN components. The stellar and dust luminosities are combined to form the SF component, while the AGN component is derived directly from CIGALE's emission modelling. These distinct approaches are subsequently used to construct the IR luminosity functions of the two samples. 
+
+Figure \ref{Fig: LIR vs LIR} compares the CIGALE total luminosity to the ZFOURGE total bolometric luminosity ($L_{bol}$). In the top panel, galaxies are coloured based on their redshift bin. It can be seen that the brightest galaxies are more likely to exist at higher redshifts. In the bottom panel, galaxies are coloured based on the AGN fraction ($\mathrm{F}_{AGN}$) to the total luminosity derived by CIGALE. Galaxies at higher redshift are brighter and more likely to host a powerful AGN.
 
 \begin{table}[htbp]
-\centering
-\caption{Parameter space used for SED fitting with CIGALE}
-\label{tab:parameter_space}
-\begin{tabular}{ll}
-\hline
-\textbf{Parameter}          & \textbf{Model/Values}                                                           \\ \hline
-SFH                         & Delayed SFH $\tau = 1,3,5,7,9,11$ Gyr                                           \\
-Age                         & $0.5, 1, 3, 5, 7, 9, 11$ Gyr                                                   \\
-Burst Fraction              & $0.0, 0.01, 0.05, 0.1, 0.15, 0.2, 0.3$                                         \\
-SSP                         & Bruzual \& Charlot (2003)                                                      \\
-IMF                         & Chabrier (2003)                                                             \\
-Metallicity                 & Fixed at 0.02                                                                  \\
-Nebular                     & Inoue (2011)                                                                   \\
-Dust Atten.                 & \cite{calzetti_dust_2000} $E_{(B-V)} = 0.01, 0.05, 0.1, 0.5, 1.0, 1.5$               \\
-Dust Emission               & \cite{dale_two-parameter_2014} $\alpha = 1.0, 1.5, 2.0, 2.5, 3.0$                           \\
-AGN Model                   & SKIRTOR (Stalevski et al. 2012 \cite{stalevski_dust_2016}                                           \\
-Torus Inclination           & $30^\circ, 70^\circ$                                                           \\
-AGN Fraction                & $0.0, 0.01, 0.1 - 0.9$ (steps of 0.1), 0.99                                    \\
-Polar Extinction            & SMC $E(B-V) = 0.0, 0.03, 0.1, 0.2, 0.4, 0.6, 1.0, 1.8$                   \\
-\hline
-\end{tabular}
+    \caption{Parameter space used for SED fitting with CIGALE}
+    \label{tab:parameter_space}
+    \begin{center}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Parameter} & \textbf{Model/Values} \\ 
+        \hline
+        SFH                 & Delayed SFH $\tau = 1,3,5,7,9,11$ Gyr \\
+        Age                 & $0.5, 1, 3, 5, 7, 9, 11$ Gyr \\
+        Burst Fraction      & $0.0, 0.01, 0.05, 0.1, 0.15, 0.2, 0.3$ \\
+        SSP                 & \cite{bruzual_stellar_2003} \\
+        IMF                 & \cite{chabrier_galactic_2003} \\
+        Metallicity         & Fixed at 0.02 \\
+        Nebular             & \cite{inoue_rest-frame_2011} \\
+        Dust Atten.         & \cite{calzetti_dust_2000} $E_{(B-V)} = 0.01, 0.05, 0.1, 0.5$, \\
+                            & $1.0, 1.5$ \\
+        Dust Emission       & \cite{dale_two-parameter_2014} $\alpha = 1.0, 1.5, 2.0, 2.5, 3.0$ \\
+        AGN Model           & SKIRTOR \citep{stalevski_3d_2012, stalevski_dust_2016} \\
+        Torus Inclination   & $30^\circ, 70^\circ$ \\
+        AGN Fraction        & $0.0, 0.01, 0.1 - 0.9$ (steps of 0.1), 0.99 \\
+        Polar Extinction    & SMC $E(B-V) = 0.0, 0.03, 0.1, 0.2, 0.4, 0.6, 1.0, 1.8$ \\
+        \botrule
+    \end{tabular}
+    \end{center}
 \end{table}
+
+% \begin{table}[h]
+%     \caption{Best-fit parameters ($\log(L^*)$, $\log(\phi^*)$), along with fixed parameters ($\alpha, \sigma$), for the CIGALE AGN Saunders luminosity function across different redshift bins.}
+%     \label{Tab: Param Evo AGN}
+%     \begin{center}
+%     \begin{tabular}{ccccc}
+%         \toprule
+%         $z$ & log$(L^{*})$ & log$(\phi^{*})$ & $\alpha$ & $\sigma$ \\
+%         \hline
+%         0.00 $\leq z <$ 0.30 &  9.19 $\pm$ 0.53 & -2.79 $\pm$ 0.13 & 1.2 & 1.0 \\
+%         0.30 $\leq z <$ 0.45 &  9.99 $\pm$ 0.59 & -2.96 $\pm$ 0.14 & 1.2 & 1.0 \\
+%         0.45 $\leq z <$ 0.60 &  9.42 $\pm$ 0.26 & -2.65 $\pm$ 0.08 & 1.2 & 1.0 \\
+%         0.60 $\leq z <$ 0.80 &  9.07 $\pm$ 0.17 & -2.49 $\pm$ 0.07 & 1.2 & 1.0 \\
+%         0.80 $\leq z <$ 1.00 &  9.07 $\pm$ 0.27 & -2.41 $\pm$ 0.12 & 1.2 & 1.0 \\
+%         1.00 $\leq z <$ 1.20 &  9.32 $\pm$ 0.17 & -2.60 $\pm$ 0.08 & 1.2 & 1.0 \\
+%         1.20 $\leq z <$ 1.70 &  9.57 $\pm$ 0.26 & -2.50 $\pm$ 0.12 & 1.2 & 1.0 \\
+%         1.70 $\leq z <$ 2.00 &  9.82 $\pm$ 0.16 & -2.49 $\pm$ 0.07 & 1.2 & 1.0 \\
+%         2.00 $\leq z <$ 2.50 & 10.07 $\pm$ 0.20 & -2.55 $\pm$ 0.10 & 1.2 & 0.9 \\
+%         2.50 $\leq z <$ 3.00 & 10.32 $\pm$ 0.07 & -2.61 $\pm$ 0.04 & 1.2 & 0.8 \\
+%         3.00 $\leq z <$ 4.20 & 10.59 $\pm$ 0.12 & -2.81 $\pm$ 0.07 & 1.2 & 0.7 \\
+%         4.20 $\leq z <$ 6.00 & 11.15 $\pm$ 0.00 & -3.66 $\pm$ 0.07 & 1.2 & 0.6      
+%         \botrule
+%     \end{tabular}
+%     \end{center}
+% \end{table}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.48\textwidth]{Figures/LIR vs LIR.png}
-    \caption{ZFOURGE bolometric 8-1000$\mu$m IR luminosity compared to CIGALE total luminosity. Top: Sources coloured by redshift bin. Bottom: sources coloured by AGN fraction ($\mathcal{F}_{AGN}$). AGN fraction clearly increases with redshift. At $z \geq 3$ the average AGN fraction is greater than 30\%.}
+    \caption{ZFOURGE bolometric 8-1000$\mu$m IR luminosity compared to CIGALE total luminosity. Top: Sources coloured by redshift bin. Bottom: sources coloured by AGN fraction ($\mathcal{F}_{AGN}$). AGN fraction increases with redshift. At $z \geq 3$, the average AGN fraction is greater than 30\%.}
     \label{Fig: LIR vs LIR}
 \end{figure}
 
-\begin{figure*}
-    \centering
-    \includegraphics[width=\textwidth]{Figures/SED Example.png}
-    \caption{Example SED of different galactic components.}
-    \label{Fig: SED Example}
-\end{figure*}
+\subsection{Robustness Tests with Mock Analysis} \label{Sec: Mock_Analysis}
+To ensure the reliability of the decomposition process, particularly for faint AGN, we performed a series of robustness tests using CIGALE's built-in mock analysis. These tests evaluate the software's ability to accurately decompose AGN and SF contributions across various redshifts and luminosities, specifically focusing on galaxies with low bolometric luminosities. By comparing the input and recovered AGN luminosities from the analysis, we confirmed that our parameter space and methodology are robust, particularly in detecting faint AGN. The mock analysis demonstrated that AGN luminosity was reliably constrained, with Pearson correlation coefficients (PCCs) ranging from 0.969 to 0.973 across all fields. Most sources lay within 0.5 dex of the 1-to-1 line, with mean residuals between $-0.02$ and $0.04$ dex, confirming the robustness of AGN luminosity recovery. These results indicate that our method effectively minimises bias against faint AGN, which are often difficult to detect in traditional analyses.
 
-To ensure the reliability of AGN extraction, particularly for low-luminosity AGN, we performed a series of robustness tests using mock analysis. These tests evaluated CIGALE's ability to accurately decompose AGN and SF contributions across a range of redshifts and luminosities, with a specific focus on galaxies with low bolometric luminosities. By comparing the input and recovered AGN luminosities from the simulated datasets, we confirmed that our parameter space and methodology are robust, particularly in detecting faint AGN.
+For a more comprehensive description of the SED decomposition methodology, see \cite{cowley_decoupled_2018}. Additionally, refer to the CIGALE software paper \citep{boquien_cigale_2019} for detailed information on its decomposition process and parameter optimisation techniques.
 
-The mock analysis demonstrated that AGN luminosity was reliably constrained, with Pearson correlation coefficients (PCCs) ranging from 0.969 to 0.973 across all fields. Most sources lay within 0.5 dex of the 1-to-1 line, with mean residuals between $-0.02$ and $0.04$ dex, confirming the robustness of AGN luminosity recovery. These results indicate that our method effectively minimises bias against low-luminosity AGN, which are often difficult to detect in traditional analyses.
+% \subsection{Bolometric IR Luminosity Derivation}
+% \label{sec: Bolometric IR Luminosity}
 
-\subsection{Bolometric IR Luminosity Derivation}
-\label{sec: Bolometric IR Luminosity}
+% Understanding the total IR energy output of galaxies is essential for tracing both SF and AGN activity, particularly in dusty environments where much of the energy is re-emitted in the IR \citep{fu_decomposing_2010}. By estimating the bolometric IR luminosity, we can gain insights into the contribution of these processes across cosmic time. To this end, we integrate the best-fit SED of each source from 8-1000$\mu$m to estimate the bolometric IR luminosity, providing a robust measure of the total IR emission. Specifically, we use the averaged \cite{wuyts_fireworks_2008} template to fit the 24-160$\mu$m photometry, from which the total bolometric IR luminosity is derived. For a detailed description of this calculation, refer to section 6 of \cite{straatman_fourstar_2016}.
 
-Understanding the total IR energy output of galaxies is essential for tracing both SF and AGN activity, particularly in dusty environments where much of the energy is re-emitted in the IR \citep{fu_decomposing_2010}. By estimating the bolometric IR luminosity, we can gain insights into the contribution of these processes across cosmic time. To this end, we integrate the best-fit SED of each source from 8-1000$\mu$m to estimate the bolometric IR luminosity, providing a robust measure of the total IR emission. Specifically, we use the averaged \cite{wuyts_fireworks_2008} template to fit the 24-160$\mu$m photometry, from which the total bolometric IR luminosity is derived. For a detailed description of this calculation, refer to section 6 of \cite{straatman_fourstar_2016}. These bolometric IR luminosities are subsequently used to construct the bolometric IR luminosity function of the ZFOURGE survey up to $z \approx 6$ (see section \ref{Sec: Luminosity Functions}).
+% Similarly, the CIGALE stellar and dust luminosity are combined to form the SF component. The CIGALE AGN luminosity forms the AGN component. These luminosities are subsequently used to construct the IR luminosity function of the ZFOURGE survey and CIGALE SF and AGN populations up to $z \approx 6$ (see section \ref{Sec: Luminosity Functions}). It is important to note that individual galaxies can contain both an AGN and SF component luminosity due to mixing. Figure \ref{Fig: SED Example} shows an example of a CIGALE SED and its decomposed components.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.48\textwidth]{Figures/LIR vs Z.png}
-    \caption{Luminosity-redshift distributions of (top) the ZFOURGE bolometric $8-1000\mu m$ luminosity, (middle) the CIGALE AGN luminosity, and (bottom) the CIGALE SF luminosity. Sources are coloured by redshift bin and are removed (coloured grey) based on the 80\% completeness cut of the bolometric flux for each component respectively.}
-    \label{Fig: ZF Lum vs z}
-\end{figure}
-
-The 24$\mu$m flux is usually a good proxy for the bolometric flux \citep{rodighiero_mid-_2010}. However, when the 24$\mu$m flux limit is used with the ZFOURGE bolometric luminosity, the limit varies with redshift, possibly due to spectral features shifting in and out of the template fitting process. Instead, we calculate the bolometric flux from the bolometric luminosity and take the 80\% completeness as the flux limit. We calculate the ZFOURGE bolometric flux limit to be $3.882\times10^{-18}$ $W/m^2$. The ZFOURGE star-forming and quiescent dominated sources have very similar flux limits. \textcolor{red}{The CIGALE total and star-forming sources have a flux limit of $5.232\times10^{-18}$ $W/m^2$. The CIGALE AGN flux also varies with redshift, so we calculate the 80\% completeness for each redshift bin individually. Additionally, luminosity completeness limits for ZFOURGE and CIGALE are calculated for each redshift bin. These limits represent the minimum luminosity a galaxy must have to be detectable throughout the entire redshift bin.}
+% The 24$\mu$m flux is usually a good proxy for the bolometric flux \citep{rodighiero_mid-_2010}. However, when the 24$\mu$m flux limit is used with the ZFOURGE bolometric luminosity, the limit varies with redshift, possibly due to spectral features shifting in and out of the template fitting process. Instead, we calculate the bolometric flux from the bolometric luminosity and take the 80\% completeness as the flux limit. We calculate the ZFOURGE bolometric flux limit to be $3.882\times10^{-18}$ $W/m^2$. The ZFOURGE star-forming and quiescent-dominated sources have very similar flux limits. \textcolor{red}{The CIGALE total and star-forming sources have a flux limit of $5.232\times10^{-18}$ $W/m^2$. The CIGALE AGN flux also varies with redshift, so we calculate the 80\% % completeness for each redshift bin. Additionally, luminosity completeness limits for ZFOURGE and CIGALE are calculated for each redshift bin. These limits represent the minimum luminosity a galaxy must have to be detectable throughout the entire redshift bin.}

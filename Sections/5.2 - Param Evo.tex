@@ -1,12 +1,12 @@
 \subsection{Parameter Evolution} \label{Sec: Parameter Evolution}
-In this section, we discuss the parameter evolution of the Saunders and Schechter luminosity function fits in figure \ref{Fig: Bolometric IR LF}. The evolution of $\phi^{*}$ and $L^{*}$ across redshift is presented in figure \ref{Fig: Param Evo} with values and $1\sigma$ errors in tables \ref{Tab: Param Evo ZF}, \ref{Tab: Param Evo AGN}, and \ref{Tab: Param Evo SF}. The best fitting parameter values were calculated using \texttt{scipy.optimize.curve\_fit} \citep{virtanen_scipy_2020} and 1$\sigma$ parameter uncertainties are calculated using \texttt{np.sqrt(np.diag(pcov))} \citep{harris_array_2020} which relates the covariance of the best-fit parameters. As discussed in section \ref{Sec: Bolometric IR LF}, our final redshift bin likely suffers from incompleteness. However, ZFOURGE's ability to probe fainter luminosities becomes advantageous at higher redshifts, providing more reliable constraints on the LF parameters. In our lowest redshift bins, where ZFOURGE is less effective, larger $1\sigma$ errors are recorded.
+In this section, we discuss the parameter evolution of the Saunders and Schechter luminosity function fits in figure \ref{Fig: Bolometric IR LF}. The evolution of $\phi^{*}$ and $L^{*}$ across redshift is presented in figure \ref{Fig: Param Evo} with values and $1\sigma$ errors in tables \ref{Tab: Param Evo ZF}, \ref{Tab: Param Evo AGN}, and \ref{Tab: Param Evo SF}. The best fitting parameter values were calculated using \texttt{scipy.optimize.curve\_fit} \citep{virtanen_scipy_2020} and 1$\sigma$ parameter uncertainties are calculated using \texttt{np.sqrt(np.diag(pcov))} \citep{harris_array_2020} which relates the covariance of the best-fit parameters. As discussed in section \ref{Sec: Bolometric IR LF}, our final redshift bin likely suffers from incompleteness. However, ZFOURGE's ability to probe fainter luminosities becomes advantageous at higher redshifts, providing more reliable constraints on the LF parameters. In our lowest redshift bins, where ZFOURGE is less effective, more pronounced $1\sigma$ errors are recorded.
 
-To better constrain the faint end slope of the ZFOURGE total LF, we fix $\alpha=1.3$ across all redshift bins. This result differs from the literature where \cite{rodighiero_mid-_2010, gruppioni_herschel_2013} fix $\alpha=1.2$ whereas \cite{fu_decomposing_2010} leaves $\alpha$ as a free fitting parameter found to be $\alpha=1.46$ (respective to our Saunders' fitting function). As we lack luminosity bins along the bright end of the LF, we fix the bright end $\sigma$ to values which fit best to the available literature. The CIGALE SF LF is fit with a Schechter function and a faint end slope of $\alpha=1.2$ reflecting its shallower rise compared to the ZFOURGE total LF. Similarly, we fit the CIGALE AGN LF with a Saunders function, also using $\alpha$ = 1.2. The faint end slopes of CIGALE LFs agree with the literature. Due to the absence of bright-end AGN luminosity bins, we incorporate data from \cite{thorne_deep_2022} to help constrain the fitting process.
+To better constrain the faint end slope of the ZFOURGE total LF, we fix $\alpha=1.3$ across all redshift bins. This result differs from the literature where \cite{rodighiero_mid-_2010, gruppioni_herschel_2013} fix $\alpha=1.2$ whereas \cite{fu_decomposing_2010} leaves $\alpha$ as a free fitting parameter found to be $\alpha=1.46$ (respective to our Saunders fitting function). As we lack luminosity bins along the bright end of the LF, we fix the bright end $\sigma$ to values that fit best to the available literature. The CIGALE SF LF fits with a Schechter function and a faint end slope of $\alpha=1.2$, reflecting its shallower rise compared to the ZFOURGE total LF. Similarly, we use a Saunders function to fit the CIGALE AGN LF using $\alpha$ = 1.2. The faint end slopes of CIGALE LFs agree with the literature. Due to the absence of bright-end AGN luminosity bins, we incorporate data from \cite{thorne_deep_2022} to help constrain the fitting process.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.48\textwidth]{Figures/Param Evo.png}
-    \caption{Best fitting parameters and $1\sigma$ uncertainties to our luminosity functions. Top: $L^{*}$ evolution. Bottom: $\phi^{*}$ evolution. Blue triangles represent the ZFOURGE total and orange circles the ZFOURGE quiescent population. Red squares represent the CIGALE AGN and green crosses the CIGALE star-forming population. Dashed lines represent the $\propto(1+z)^k$ evolution. We compare our results to the relevant literature coloured gray. \cite{gruppioni_herschel_2013} crosses, \cite{magnelli_deepest_2013} pluses, and \cite{caputi_infrared_2007} uppercase $\Psi$'s.}
+    \caption{Best fitting parameters and $1\sigma$ uncertainties to our luminosity functions. Top: $L^{*}$ evolution. Bottom: $\phi^{*}$ evolution. Blue triangles represent the ZFOURGE total. Red squares represent the CIGALE AGN and green crosses the CIGALE SF population. Dashed lines represent the $\propto(1+z)^k$ evolution. We compare our results to the relevant literature, which is coloured grey. \cite{gruppioni_herschel_2013} crosses, \cite{magnelli_deepest_2013} pluses, and \cite{caputi_infrared_2007} uppercase $\Psi$'s.}
     \label{Fig: Param Evo}
 \end{figure}
 
@@ -85,9 +85,9 @@ To better constrain the faint end slope of the ZFOURGE total LF, we fix $\alpha=
     \end{center}
 \end{table}
 
-Our ZFOURGE free parameters $L^{*}$ and $\phi^{*}$ exhibit evolutionary trends that differ from those reported in the literature. However, our fitting process is robust, and the evolution of the free parameters does not change significantly when the fixed parameters are altered. A known challenge in this analysis is the degeneracy between $L^{*}$ and $\phi^{*}$. A decrease in $L^{*}$ can be somewhat compensated for by an increase in $\phi^{*}$ and vice-versa. Thus, the absolute values of the parameters themselves can be overlooked in favour of the overall trend in the dataset. 
+Our ZFOURGE free parameters $L^{*}$ and $\phi^{*}$ exhibit evolutionary trends that differ from those reported in the literature. However, our fitting process is robust, and the evolution of the free parameters does not change significantly when the fixed parameters are altered. A known challenge in this analysis is the degeneracy between $L^{*}$ and $\phi^{*}$. A decrease in $L^{*}$ can be somewhat compensated for by increasing $\phi^{*}$ and vice-versa. Thus, the absolute values of the parameters themselves can be overlooked in favour of the overall trend in the dataset. 
 
-We find rapid evolution of ZFOURGE $L^{*}$ up to $z\approx1$ after which $L^{*}$ evolution slows.
+As shown below, we find rapid evolution of ZFOURGE $L^{*}$ up to $z\approx1$, after which $L^{*}$ evolution slows. ZFOURGE $\phi^{*}$ does not show as rapid evolution as $L^{*}$ in all redshift bins: 
 
 \begin{equation*}
     L^{*} =
@@ -97,8 +97,6 @@ We find rapid evolution of ZFOURGE $L^{*}$ up to $z\approx1$ after which $L^{*}$
     \end{cases}
 \end{equation*}
 
-ZFOURGE $\phi^{*}$ does not show as rapid evolution as $L^{*}$ at all redshift bins. 
-
 \begin{equation*}
     \phi^{*} =
     \begin{cases} 
@@ -107,7 +105,7 @@ ZFOURGE $\phi^{*}$ does not show as rapid evolution as $L^{*}$ at all redshift b
     \end{cases}
 \end{equation*}
 
-Compared to the literature, both \cite{gruppioni_herschel_2013} and \cite{magnelli_deepest_2013} find much shallower $L^{*}$ evolution from $0<z<1$. ZFOURGE evolves 2-3x faster at $0<z<1$, but only 1.25x faster at $z>1$. This could be explained by ZFOURGE probing fainter luminosities, however, it’s important to note that ZFOURGE was optimised for studying galaxies at $z>1$, where its deep near-infrared coverage is particularly effective. Consequently, results at $z<1$ should be interpreted with caution, as the survey’s design is less tailored to these lower redshifts. 
+Compared to the literature, both \cite{gruppioni_herschel_2013} and \cite{magnelli_deepest_2013} find much shallower $L^{*}$ evolution from $0<z<1$. ZFOURGE evolves 2-3x faster at $0<z<1$, but only 1.25x faster at $z>1$. This could be explained by ZFOURGE probing fainter luminosities. However, it is important to note that ZFOURGE was optimised for studying galaxies at $z>1$, where its deep near-infrared coverage is particularly effective. Consequently, results at $z<1$ should be interpreted cautiously, as the survey's design is less tailored to these lower redshifts. 
 
 The CIGALE SF $L^{*}$ shows slower evolution compared to the ZFOURGE total from $0<z<1$ but similar evolution from $1<z<2$. In contrast to ZFOURGE results, the CIGALE SF $L^{*}$ declines from $z>2$ onwards. 
 
@@ -119,7 +117,7 @@ The CIGALE SF $L^{*}$ shows slower evolution compared to the ZFOURGE total from 
     \end{cases}
 \end{equation*}
 
-This reversal is not seen in the evolution of $\phi^{*}$ which has a similar slope across all redshifts and is close to the results published by \cite{magnelli_deepest_2013}. 
+This reversal is not seen in the evolution of $\phi^{*}$, which has a similar slope across all redshifts and is close to the results published by \cite{magnelli_deepest_2013}. 
 
 \begin{equation*}
     \phi^{*} =
@@ -129,7 +127,9 @@ This reversal is not seen in the evolution of $\phi^{*}$ which has a similar slo
     \end{cases}
 \end{equation*}
 
-The reversal in the evolution of $L^{*}$ above $z>2$ indicates that SF grew from at least $z=5$ to $z=2$ and has been declining ever since. It is well known (\citealp{gruppioni_herschel_2013,  madau_cosmic_2014} and references within) that the IR luminosity density has been declining since $z\approx2$ and we explore this possibility more in section \ref{Sec: IR Density}. \cite{gruppioni_herschel_2013} and \cite{magnelli_deepest_2013} find similar results in $L^{*}$ from $0<z<1$ and similar $\phi^{*}$ evolution from $0<z<2$.
+The reversal in the evolution of $L^{*}$ above $z>2$ indicates that SF grew from at least $z=5$ to $z=2$ and has been declining ever since. It is well known (\citealp{gruppioni_herschel_2013,  madau_cosmic_2014} and references within) that the IR luminosity density has been declining since $z\approx2$ and we explore this possibility more in section \ref{Sec: IR Density}. \cite{gruppioni_herschel_2013} and \cite{magnelli_deepest_2013} find similar results in $L^{*}$ from $0<z<1$ and similar $\phi^{*}$ evolution from $0<z<2$. 
+
+% We consistently see that according to the evolution of the characteristic number density $\phi^{*}$, the number of SF galaxies has increased since cosmic time's dawn. However, the characteristic luminosity $L^{*}$, has been declining since $z\approx2$. Our results reaffirm that $z\approx2$ is an important epoch for galaxy evolution.
 
 The CIGALE AGN $L^{*}$ and $\phi^{*}$ evolve in the opposite direction from the literature and from our ZFOURGE and CIGALE SF parameters at $z<1$:
 
@@ -149,7 +149,7 @@ The CIGALE AGN $L^{*}$ and $\phi^{*}$ evolve in the opposite direction from the 
     \end{cases}
 \end{equation*}
 
-At $z>1$, the evolution follows the normal trend. This anomalous behavior at $z<1$ could be attributed to the degeneracy between $L^{*}$ and $\phi^{*}$, as previously mentioned. However, the magnitude of this degeneracy has not been observed so prominently in the literature, suggesting two possibilities: either CIGALE is revealing a significant evolutionary epoch for AGN at $z\approx1$, or there is a bias in our fitting process. The fact that our fitting process produces similar results for the ZFOURGE total as seen in the literature and recovers the peak and turnover in the CIGALE SF gives good evidence to the idea that $z\approx1$ is a significant epoch for AGN evolution. \cite{delvecchio_tracing_2014} and \cite{hopkins_observational_2007} show a similar reversal and subsequent decline in $\phi^{*}$ evolution below $z=1$. However, both do not find a corresponding reversal and uptick in $L^{*}$ evolution at $z=1$. \cite{katsianis_evolution_2017} shows that high SFG rapidly decline below $z\approx1$ because of AGN feedback. We are therefore confident in our CIGALE AGN results. 
+At $z>1$, the evolution follows the normal trend. This anomalous behavior at $z<1$ could be attributed to the degeneracy between $L^{*}$ and $\phi^{*}$, as previously mentioned. However, the magnitude of this degeneration has not been observed so prominently in the literature, suggesting two possibilities: CIGALE reveals a significant evolutionary epoch for AGN at $z\approx1$, or there is a bias in our fitting process. The fact that our fitting process produces similar results for the ZFOURGE total as seen in the literature and recovers the peak and turnover in the CIGALE SF gives good evidence to the idea that $z\approx1$ is a significant epoch for AGN evolution. \cite{delvecchio_tracing_2014} and \cite{hopkins_observational_2007} show a similar reversal and subsequent decline in $\phi^{*}$ evolution below $z=1$. However, both do not find a corresponding reversal and uptick in $L^{*}$ evolution at $z=1$. \cite{katsianis_evolution_2017} shows that high SFG rapidly decline below $z\approx1$ because of AGN feedback. We are therefore confident in our CIGALE AGN results. 
 
 Our results are complex, but showcase the importance of decomposing the SED of galaxies to separate the SF and AGN components. These trends indicate significant shifts in AGN and SF activity over cosmic time that were not detected in the combined ZFOURGE total evolution.
 
