@@ -1,5 +1,28 @@
 \section{Luminosity Functions} \label{Sec: Luminosity Functions}
 \subsection{Vmax} \label{Sec: Vmax}
+
+\begin{itemize}
+    \item \textcolor{red}{However, my major concern is about the result of the LFs shown in Figure 3: how can one of the components be much higher in normalisation than the total LF? There are several incongruences in the LFs, also at the bright-end, and I would like the authors to critically check their analysis and results to find the reason of such inconsistencies before resubmitting the paper.}
+    \item \textcolor{Green}{Clarify that ZFOURGE total is not CIGALE total}
+    \vspace{0.5cm}
+
+    
+    \item \textcolor{red}{The concern regarding the functional forms is due to the fact that is difficult to compare the main parameters obtained with different forms: even if they are called in the same way, they might not be directly comparable. I therefore would like the authors to use the same form for all the components and to compare the resulting parameters only to works in the literature using the same form.}
+    \item \textcolor{green}{We've explicittly done schecther for SF and saunders for AGN as is often done in the literature. x, y, z, use schechter for sf, a, b, c, use saunders for AGN. This was done to better compare to the literature.}
+    
+    \item \textcolor{red}{Please, say explicitly which values of the cosmological parameters are considered. Not all readers necessarily use python and are due to know what is contained in the FlatLambdaCDM package).}
+    \item \textcolor{green}{Cosmology is explictiy state in the introduction.}
+    
+    \item \textcolor{red}{"Sources with Dmax values that do not extend to the end of the redshift bin are removed to avoid bias from sources incompletely sampled within the bin." -> As mentioned before, this avoids a small incompleteness (or rather inhomogeneity in the redshift bin), but introduces a larges one, because excluding sources within the bin lower the real (or best possible) volume density of sources. I would therefore suggest the author to keep these sources and recompute the LFs.}
+    \item \textcolor{green}{I have changed this, update later}
+    
+    \item \textcolor{red}{The considered error in the LF is simply the Poissonian value. Usually simulations considering also the possible sources of uncertainties in zphot, and Lir should be run, providing more realistic (and larger) error-bars. If there are reasons to believe that these uncertainties are much smaller than the poissonian ones (and can be neglected), the authors should state explicitly in the text and comment on that.}
+    \item \textcolor{green}{I have done this now}
+    
+    \item \textcolor{red}{I urge the authors to discuss about the sample incompleteness and how they deal with it, as the exclusion of different classes of sources have certainly introduced different levels of incompleteness, which should be accounted for in the LF calculation.}
+    \item \textcolor{green}{Potentially bias associated with my conservate approach. How it affects normalisation/gright/dim ends}
+\end{itemize}
+
 To estimate the LF from our data, we utilise the $1/V_{max}$ method \citep{schmidt_space_1968}. The $1/V_{max}$ method is well-suited for surveys like ZFOURGE, as it does not assume any specific shape for the LF and can easily accommodate galaxies observed across varying depths. It accounts for the maximum observable volume of each galaxy and is given by equation \ref{EQ: 1/Vmax}:
 
 \begin{equation} \label{EQ: 1/Vmax}
@@ -11,7 +34,7 @@ Where $V_{max}$ represents the maximum co-moving volume of the $i$-th source and
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{Figures/LF.png}
-    \caption{The luminosity functions of major galaxy populations in ZFOURGE and CIGALE calculated using the Vmax method. The dark blue triangles present the ZFOURGE bolometric IR (8-1000$\mu$m) LF. The CIGALE SF and AGN LFs are the green stars and red squares, respectively. The blue and red dashed lines show the best fit Saunders function \citep{saunders_60-mum_1990} to the ZFOURGE total and CIGALE AGN LF, respectively. The green dashed line shows the best-fit Schechter function \citep{schechter_analytic_1976} to the CIGALE SF LF. The shaded regions represent the $1\sigma$ functional fit errors. The luminosity completeness limit of each redshift bin is where we stop displaying fainter $\phi$ values. Where possible, comparable literature results are also shown. The local \cite{sanders_iras_2003} luminosity function is shown across all redshift bins as the grey dashed line. \cite{rodighiero_mid-_2010} is shown as gold filled stars from $0 < z < 2.5$, \cite{gruppioni_herschel_2013} as purple crosses from $0 < z < 4.2$, \cite{symeonidis_agn_2021} AGN as pink hexagons, \cite{thorne_deep_2022} AGN as maroon upside-down triangles, \cite{delvecchio_tracing_2014} AGN as indigo diamonds. Differing redshift bins are colour-labelled accordingly. Our ZFOURGE total results are consistent with various sources across redshift bins in the literature \citep{fu_decomposing_2010, caputi_infrared_2007, huang_local_2007}}
+    \caption{The luminosity functions of major galaxy populations in ZFOURGE and CIGALE calculated using the Vmax method. The dark blue triangles present the ZFOURGE bolometric IR (8-1000$\mu$m) LF. The CIGALE SF and AGN LFs are the green stars and red squares, respectively. The blue and red dashed lines show the best fit Saunders function \citep{saunders_60-mum_1990} to the ZFOURGE total and CIGALE AGN LF, respectively. The green dashed line shows the best-fit Schechter function \citep{schechter_analytic_1976} to the CIGALE SF LF. The shaded regions represent the $1\sigma$ functional fit errors. The luminosity completeness limit of each redshift bin is where we stop displaying fainter $\phi$ values. Where possible, comparable literature results are also shown. The local \cite{sanders_iras_2003} luminosity function is shown across all redshift bins as the grey dashed line. \cite{rodighiero_mid-_2010} is shown as gold filled stars from $0 < z < 2.5$, \cite{gruppioni_herschel_2013} as purple crosses from $0 < z < 4.2$, \cite{symeonidis_agn_2021} AGN as pink hexagons, \cite{thorne_deep_2022} AGN as maroon upside-down triangles, \cite{delvecchio_tracing_2014} AGN as indigo diamonds. Differing redshift bins are colour-labelled accordingly. Our ZFOURGE total results are consistent with various sources across redshift bins in the literature \citep{caputi_infrared_2007, huang_local_2007, fu_decomposing_2010}}
     \label{Fig: Bolometric IR LF}
 \end{figure*}
 
@@ -159,6 +182,10 @@ Sources with $D_{max}$ values that do not extend to the end of the redshift bin 
 \end{table*}
 
 \subsection{Fitting Functions}
+\begin{itemize}
+    \item \textcolor{red}{Since the LF parameters are not directly comparable using two different fitting functions, why not using the modified Schechter for all, ZFOURGE, AGN and SF?}
+    \item \textcolor{Green}{Same as before}
+\end{itemize}
 
 We first construct the bolometric IR LF using the ZFOURGE dataset. Then, using CIGALE, we decompose the luminosity into contributions from SF regions and AGN, allowing us to investigate the evolution of these components separately.
 

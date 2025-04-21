@@ -2,9 +2,32 @@
 The public version of the ZFOURGE catalogues has utilised \texttt{EAZY} \citep{brammer_eazy_2008} and \texttt{FAST} \citep{kriek_ultra-deep_2009} for parameterising galaxy properties, primarily focusing on photometric redshifts, stellar masses, and SFRs. However, while effective, these methods provide a more generalised view of galaxy properties without entirely disentangling the contributions from different physical components within each galaxy, such as SF regions and AGN. To address this limitation, we employ the SED fitting software CIGALE \citep{boquien_cigale_2019}, which enables the decomposition of observed light from galaxies into distinct components, including SF and AGN activity. This method builds on the work by \cite{cowley_decoupled_2018}, incorporating additional photometric coverage and an updated parameter space to better quantify AGN contributions.
 
 \subsection{CIGALE Methodology and Parameter Space} \label{Sec: CIGALE_Parameters}
+\begin{itemize}
+    \item \textcolor{red}{Why does the photometric data in COSMOS and UDS stop at 24um? Why not using also Herschel to better constrain the SF component? Moreover, what is the reason why SPIRE photometry at 250-350-500um is not considered?}
+    \item \textcolor{Green}{We are using the public version of ZFOURGE, which does/does not include the datasets referred to. While there would be benefit to includng them, this would require significant extra analysis which is outside the scope. This is a complementary paper to ZFOURGE so that other researchers can observe luminosity functions. Further research at redder wavelengths is future work.}
+    \vspace{0.25cm}
+    
+    \item \textcolor{red}{It is not clear how many ZFOURGE galaxies have far-IR photometry available: it will be important to clarify numbers: tot ZFOURGE sources, \% with IRAC data, \% with 24um data, \% with Herschel data.}
+    \item \textcolor{Green}{Look at my code. How do we deal with balance in FIR data? Maybe create and look at LF with only 160: does it change chape?}
+    \vspace{0.25cm}
+    
+    \item \textcolor{red}{For sources with no far-IR data available, the error on the IR luminosity should be estimated (Comparing Lir with and without far-IR data for those with available far-IR data).}
+    \item \textcolor{Green}{Look at Vanessa's data. Plot the two luminosities with and without FIR. If there isnt a large difference, we can mention how the lack of FIR is not impact LF estimates. If we do see a difference, such as a skew, we can skew them back. If theres a spread, quantify the spread. Add the additional error in quadrature.}
+    
+\end{itemize}
+
 CIGALE performs multi-component SED fitting to derive galaxy properties by integrating our photometry from 0.2 $\mu$m to 160 $\mu$m across the CDFS field and up to 24 $\mu$m for COSMOS and UDS. This broader wavelength coverage allows for a more complete and precise decomposition of galaxy light into SF and AGN components. The decomposition uses a range of parameter values (see Table \ref{tab:parameter_space}), allowing for flexible modelling of star formation histories (SFH), dust attenuation, AGN torus contributions, and other factors. We also incorporate the SKIRTOR AGN torus model \citep{stalevski_dust_2016}, which better handles clumpy dust distributions and polar dust extinction, providing an accurate characterisation of AGN emission.
 
 \subsection{Bolometric IR Luminosity Derivation} \label{Sec: IR_Luminosity}
+\begin{itemize}
+    \item \textcolor{red}{Note that at the higher redshifts (and AGN fractions) the Wuyts method tends to overestimate the total IR luminosity: this can be due to the fact that it considers only the 24-160um range, that in the higher redshift bins (z=3-4.2, 4.2-6) corresponds to ~5.3 - 36, 3.4 - 27 um rest frame, not sampling at all the IR bump. Please, comment on that in the text.}
+    \item \textcolor{Green}{okay, find source discussing this and write a couple sentences. OLd ZFOIRGE IR lum vs the reduced and full band CIGALE. If reviewer is correct, we'll see the high-z sources will be elevated over cigale. May have to limit redshift range.}
+    \vspace{0.25cm}
+    
+    \item \textcolor{red}{It would be useful to show some representative examples (e.g., AGN poorly constrained and AGN very well constrained) of the data SEDs over plotted to the CIGALE best fitting results, to show how well the AGN component can be constrained by the available data.}
+    \item \textcolor{Green}{Perhaps example SEDs were not a bad idea after all. Vanessa could help here. Refer to her paper in prep. She can rewrite section 3 and include good/bad plots. Give plots to reviewer, but dont include in paper. Probably good to include a good one by itself though.}   
+\end{itemize}
+
 Understanding the total IR energy output of galaxies is essential for tracing both SF and AGN activity, particularly in dusty environments where much of the energy is re-emitted in the IR \citep{fu_decomposing_2010}. By estimating the bolometric IR luminosity, we can gain insights into the contribution of these processes across cosmic time. 
 
 For the ZFOURGE total LF sample, we adopted the approach in \cite{straatman_fourstar_2016} where the averaged \cite{wuyts_fireworks_2008} template was fit to the 24-160 $\mu$m photometry to estimate the total bolometric IR luminosity. This method provides a robust measure of the IR emission for purely star-forming galaxies without AGN contamination.
@@ -40,34 +63,9 @@ Figure \ref{Fig: LIR vs LIR} compares the CIGALE total luminosity to the ZFOURGE
     \end{center}
 \end{table}
 
-% \begin{table}[h]
-%     \caption{Best-fit parameters ($\log(L^*)$, $\log(\phi^*)$), along with fixed parameters ($\alpha, \sigma$), for the CIGALE AGN Saunders luminosity function across different redshift bins.}
-%     \label{Tab: Param Evo AGN}
-%     \begin{center}
-%     \begin{tabular}{ccccc}
-%         \toprule
-%         $z$ & log$(L^{*})$ & log$(\phi^{*})$ & $\alpha$ & $\sigma$ \\
-%         \hline
-%         0.00 $\leq z <$ 0.30 &  9.19 $\pm$ 0.53 & -2.79 $\pm$ 0.13 & 1.2 & 1.0 \\
-%         0.30 $\leq z <$ 0.45 &  9.99 $\pm$ 0.59 & -2.96 $\pm$ 0.14 & 1.2 & 1.0 \\
-%         0.45 $\leq z <$ 0.60 &  9.42 $\pm$ 0.26 & -2.65 $\pm$ 0.08 & 1.2 & 1.0 \\
-%         0.60 $\leq z <$ 0.80 &  9.07 $\pm$ 0.17 & -2.49 $\pm$ 0.07 & 1.2 & 1.0 \\
-%         0.80 $\leq z <$ 1.00 &  9.07 $\pm$ 0.27 & -2.41 $\pm$ 0.12 & 1.2 & 1.0 \\
-%         1.00 $\leq z <$ 1.20 &  9.32 $\pm$ 0.17 & -2.60 $\pm$ 0.08 & 1.2 & 1.0 \\
-%         1.20 $\leq z <$ 1.70 &  9.57 $\pm$ 0.26 & -2.50 $\pm$ 0.12 & 1.2 & 1.0 \\
-%         1.70 $\leq z <$ 2.00 &  9.82 $\pm$ 0.16 & -2.49 $\pm$ 0.07 & 1.2 & 1.0 \\
-%         2.00 $\leq z <$ 2.50 & 10.07 $\pm$ 0.20 & -2.55 $\pm$ 0.10 & 1.2 & 0.9 \\
-%         2.50 $\leq z <$ 3.00 & 10.32 $\pm$ 0.07 & -2.61 $\pm$ 0.04 & 1.2 & 0.8 \\
-%         3.00 $\leq z <$ 4.20 & 10.59 $\pm$ 0.12 & -2.81 $\pm$ 0.07 & 1.2 & 0.7 \\
-%         4.20 $\leq z <$ 6.00 & 11.15 $\pm$ 0.00 & -3.66 $\pm$ 0.07 & 1.2 & 0.6      
-%         \botrule
-%     \end{tabular}
-%     \end{center}
-% \end{table}
-
 \begin{figure}
     \centering
-    \includegraphics[width=0.48\textwidth]{Figures/LIR vs LIR.png}
+    \includegraphics[width=0.48\textwidth]{Figures/LIR_vs_LIR.png}
     \caption{ZFOURGE bolometric 8-1000$\mu$m IR luminosity compared to CIGALE total luminosity. Top: Sources coloured by redshift bin. Bottom: sources coloured by AGN fraction ($\mathcal{F}_{AGN}$). AGN fraction increases with redshift. At $z \geq 3$, the average AGN fraction is greater than 30\%.}
     \label{Fig: LIR vs LIR}
 \end{figure}
