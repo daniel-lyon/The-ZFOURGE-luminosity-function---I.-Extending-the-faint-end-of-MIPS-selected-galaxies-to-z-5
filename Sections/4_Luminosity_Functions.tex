@@ -1,28 +1,6 @@
 \section{Luminosity Functions} \label{Sec: Luminosity Functions}
 \subsection{Vmax} \label{Sec: Vmax}
 
-\begin{itemize}
-    \item \textcolor{red}{However, my major concern is about the result of the LFs shown in Figure 3: how can one of the components be much higher in normalisation than the total LF? There are several incongruences in the LFs, also at the bright-end, and I would like the authors to critically check their analysis and results to find the reason of such inconsistencies before resubmitting the paper.}
-    \item \textcolor{Green}{Clarify that ZFOURGE total is not CIGALE total}
-    \vspace{0.5cm}
-
-    
-    \item \textcolor{red}{The concern regarding the functional forms is due to the fact that is difficult to compare the main parameters obtained with different forms: even if they are called in the same way, they might not be directly comparable. I therefore would like the authors to use the same form for all the components and to compare the resulting parameters only to works in the literature using the same form.}
-    \item \textcolor{green}{We've explicittly done schecther for SF and saunders for AGN as is often done in the literature. x, y, z, use schechter for sf, a, b, c, use saunders for AGN. This was done to better compare to the literature.}
-    
-    \item \textcolor{red}{Please, say explicitly which values of the cosmological parameters are considered. Not all readers necessarily use python and are due to know what is contained in the FlatLambdaCDM package).}
-    \item \textcolor{green}{Cosmology is explictiy state in the introduction.}
-    
-    \item \textcolor{red}{"Sources with Dmax values that do not extend to the end of the redshift bin are removed to avoid bias from sources incompletely sampled within the bin." -> As mentioned before, this avoids a small incompleteness (or rather inhomogeneity in the redshift bin), but introduces a larges one, because excluding sources within the bin lower the real (or best possible) volume density of sources. I would therefore suggest the author to keep these sources and recompute the LFs.}
-    \item \textcolor{green}{I have changed this, update later}
-    
-    \item \textcolor{red}{The considered error in the LF is simply the Poissonian value. Usually simulations considering also the possible sources of uncertainties in zphot, and Lir should be run, providing more realistic (and larger) error-bars. If there are reasons to believe that these uncertainties are much smaller than the poissonian ones (and can be neglected), the authors should state explicitly in the text and comment on that.}
-    \item \textcolor{green}{I have done this now}
-    
-    \item \textcolor{red}{I urge the authors to discuss about the sample incompleteness and how they deal with it, as the exclusion of different classes of sources have certainly introduced different levels of incompleteness, which should be accounted for in the LF calculation.}
-    \item \textcolor{green}{Potentially bias associated with my conservate approach. How it affects normalisation/gright/dim ends}
-\end{itemize}
-
 To estimate the LF from our data, we utilise the $1/V_{max}$ method \citep{schmidt_space_1968}. The $1/V_{max}$ method is well-suited for surveys like ZFOURGE, as it does not assume any specific shape for the LF and can easily accommodate galaxies observed across varying depths. It accounts for the maximum observable volume of each galaxy and is given by equation \ref{EQ: 1/Vmax}:
 
 \begin{equation} \label{EQ: 1/Vmax}
@@ -34,7 +12,7 @@ Where $V_{max}$ represents the maximum co-moving volume of the $i$-th source and
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth]{Figures/LF.png}
-    \caption{The luminosity functions of major galaxy populations in ZFOURGE and CIGALE calculated using the Vmax method. The dark blue triangles present the ZFOURGE bolometric IR (8-1000$\mu$m) LF. The CIGALE SF and AGN LFs are the green stars and red squares, respectively. The blue and red dashed lines show the best fit Saunders function \citep{saunders_60-mum_1990} to the ZFOURGE total and CIGALE AGN LF, respectively. The green dashed line shows the best-fit Schechter function \citep{schechter_analytic_1976} to the CIGALE SF LF. The shaded regions represent the $1\sigma$ functional fit errors. The luminosity completeness limit of each redshift bin is where we stop displaying fainter $\phi$ values. Where possible, comparable literature results are also shown. The local \cite{sanders_iras_2003} luminosity function is shown across all redshift bins as the grey dashed line. \cite{rodighiero_mid-_2010} is shown as gold filled stars from $0 < z < 2.5$, \cite{gruppioni_herschel_2013} as purple crosses from $0 < z < 4.2$, \cite{symeonidis_agn_2021} AGN as pink hexagons, \cite{thorne_deep_2022} AGN as maroon upside-down triangles, \cite{delvecchio_tracing_2014} AGN as indigo diamonds. Differing redshift bins are colour-labelled accordingly. Our ZFOURGE total results are consistent with various sources across redshift bins in the literature \citep{caputi_infrared_2007, huang_local_2007, fu_decomposing_2010}}
+    \caption{The luminosity functions of major galaxy populations in ZFOURGE and CIGALE calculated using the Vmax method. The dark blue triangles present the ZFOURGE bolometric IR (8-1000$\mu$m) LF. The CIGALE SF and AGN LFs are the green stars and red squares, respectively. The blue, red, and green dashed lines show the best fit Saunders function \citep{saunders_60-mum_1990} to the ZFOURGE, CIGALE AGN, and CIGALE SF, respectively. The shaded regions represent the functional fit errors. The luminosity completeness limit of each redshift bin is where we stop displaying fainter $\phi$ values. Where possible, comparable literature results are also shown. The local \cite{sanders_iras_2003} luminosity function is shown across all redshift bins as the grey dashed line. \cite{rodighiero_mid-_2010} is shown as gold filled stars from $0 < z < 2.5$, \cite{gruppioni_herschel_2013} as purple crosses from $0 < z < 4.2$, \cite{symeonidis_agn_2021} AGN as pink hexagons, \cite{thorne_deep_2022} AGN as maroon squares, \cite{delvecchio_tracing_2014} AGN as indigo diamonds. Differing redshift bins are colour-labelled accordingly. Our ZFOURGE results are consistent with various sources across redshift bins in the literature \citep{caputi_infrared_2007, huang_local_2007, fu_decomposing_2010}}
     \label{Fig: Bolometric IR LF}
 \end{figure*}
 
@@ -43,13 +21,13 @@ Where $V_{max}$ represents the maximum co-moving volume of the $i$-th source and
     V_{max,i} = \frac{4}{3} \pi \left(D_{max}^3 - D_{min}^3\right) \times \frac{A}{41,253}
 \end{equation}
 
-We calculate the maximum ($D_{max}$) and minimum ($D_{min}$) comoving distances for all sources within each redshift bin using the \texttt{FlatLambdaCDM} model from the \texttt{Astropy} Python package \citep{astropy_collaboration_astropy_2022}. These calculations are performed for sources above the luminosity-completeness limits (coloured sources of figure \ref{Fig: ZF Lum vs z}). We limit each luminosity bin to a minimum of five sources, or else the luminosity bin is discarded. 
-
-Sources with $D_{max}$ values that do not extend to the end of the redshift bin are removed to avoid bias from sources incompletely sampled within the bin. Different redshift bins have different volumes, and each luminosity bin has a different number density $\phi$. $D_{min}$ and $D_{max}$ are the comoving distances at the beginning and end of the redshift bin, respectively, for all galaxies. The relative LF number density $1\sigma$ error values are calculated with:
+We calculate the maximum ($D_{max}$) and minimum ($D_{min}$) comoving distances for all sources within each redshift bin using the \texttt{FlatLambdaCDM} model from the \texttt{Astropy} Python package \citep{astropy_collaboration_astropy_2022}. The cosmological parameters used are the same as listed in Section \ref{Sec: Intro}. We limit each luminosity bin to a minimum of five sources, or else the luminosity bin is discarded. The relative LF number density $1\sigma$ error values are calculated with:
 
 \begin{equation} \label{EQ: Vmax Error}
     \phi(L,z) = \frac{1}{\Delta \log L}\sqrt{\sum_i \frac{1}{V_{max}^2}}
 \end{equation}
+
+We add in quadrature the errors of $z_{phot}$, $L_{IR}$, and FIR deviation from our reduced mock analysis, significantly increasing the error for each luminosity bin.
 
 \begin{table*}
     \begin{center}
@@ -59,34 +37,35 @@ Sources with $D_{max}$ values that do not extend to the end of the redshift bin 
         \toprule
         $\log_{10}(L_{IR}/L_{\odot})$ & 0.00 $\leq z <$ 0.30 & 0.30 $\leq z <$ 0.45 & 0.45 $\leq z <$ 0.60 & 0.60 $\leq z <$ 0.80 & 0.80 $\leq z <$ 1.00 & 1.00 $\leq z <$ 1.20 \\
         \hline
-         8.50 --  8.75 & -1.58 $\pm$ 0.04 & - & - & - & - & - \\
-         8.75 --  9.00 & -1.70 $\pm$ 0.04 & - & - & - & - & - \\
-         9.00 --  9.25 & -1.83 $\pm$ 0.05 & -1.64 $\pm$ 0.03 & - & - & - & - \\
-         9.25 --  9.50 & -2.15 $\pm$ 0.07 & -1.79 $\pm$ 0.03 & -1.83 $\pm$ 0.03 & - & - & - \\
-         9.50 --  9.75 & -2.19 $\pm$ 0.08 & -2.05 $\pm$ 0.05 & -1.89 $\pm$ 0.03 & -1.83 $\pm$ 0.02 & - & - \\
-         9.75 -- 10.00 & -2.54 $\pm$ 0.12 & -2.40 $\pm$ 0.07 & -2.01 $\pm$ 0.03 & -1.83 $\pm$ 0.02 & -2.00 $\pm$ 0.02 & - \\
-        10.00 -- 10.25 & -2.45 $\pm$ 0.11 & -2.38 $\pm$ 0.07 & -2.30 $\pm$ 0.05 & -1.98 $\pm$ 0.02 & -2.00 $\pm$ 0.02 & -2.21 $\pm$ 0.03 \\
-        10.25 -- 10.50 & -2.64 $\pm$ 0.13 & -2.44 $\pm$ 0.07 & -2.37 $\pm$ 0.05 & -2.17 $\pm$ 0.03 & -2.09 $\pm$ 0.02 & -2.17 $\pm$ 0.02 \\
-        10.50 -- 10.75 & -2.90 $\pm$ 0.18 & -2.60 $\pm$ 0.09 & -2.62 $\pm$ 0.07 & -2.34 $\pm$ 0.04 & -2.31 $\pm$ 0.03 & -2.41 $\pm$ 0.03 \\
-        10.75 -- 11.00 & -                & -2.98 $\pm$ 0.14 & -2.74 $\pm$ 0.08 & -2.43 $\pm$ 0.04 & -2.52 $\pm$ 0.04 & -2.56 $\pm$ 0.04 \\
-        11.00 -- 11.25 & -                & -                & -3.09 $\pm$ 0.12 & -2.71 $\pm$ 0.06 & -2.58 $\pm$ 0.04 & -2.75 $\pm$ 0.05 \\
-        11.25 -- 11.50 & -                & -                & -3.50 $\pm$ 0.19 & -2.89 $\pm$ 0.07 & -2.85 $\pm$ 0.06 & -2.82 $\pm$ 0.05 \\
-        11.50 -- 11.75 & -                & -                & -                & -3.34 $\pm$ 0.12 & -2.98 $\pm$ 0.07 & -3.20 $\pm$ 0.08 \\
-        11.75 -- 12.00 & -                & -                & -                & -                & -                & -3.61 $\pm$ 0.13 \\
+         8.50 --  8.75 & -1.58 $\pm$ 0.20 & - & - & - & - & - \\
+         8.75 --  9.00 & -1.70 $\pm$ 0.26 & - & - & - & - & - \\
+         9.00 --  9.25 & -1.82 $\pm$ 0.27 & -1.64 $\pm$ 0.26 & - & - & - & - \\
+         9.25 --  9.50 & -2.15 $\pm$ 0.42 & -1.79 $\pm$ 0.31 & -1.82 $\pm$ 0.15 & - & - & - \\
+         9.50 --  9.75 & -2.16 $\pm$ 0.26 & -2.05 $\pm$ 0.45 & -1.89 $\pm$ 0.27 & - & - & - \\
+         9.75 -- 10.00 & -2.51 $\pm$ 0.42 & -2.37 $\pm$ 0.57 & -2.01 $\pm$ 0.24 & -1.83 $\pm$ 0.20 & - & - \\
+        10.00 -- 10.25 & -2.43 $\pm$ 0.25 & -2.37 $\pm$ 0.25 & -2.29 $\pm$ 0.42 & -1.97 $\pm$ 0.20 & -2.00 $\pm$ 0.21 & - \\
+        10.25 -- 10.50 & -2.60 $\pm$ 0.24 & -2.41 $\pm$ 0.17 & -2.34 $\pm$ 0.33 & -2.16 $\pm$ 0.32 & -2.09 $\pm$ 0.21 & -2.16 $\pm$ 0.22 \\
+        10.50 -- 10.75 & -2.78 $\pm$ 0.43 & -2.58 $\pm$ 0.30 & -2.61 $\pm$ 0.31 & -2.32 $\pm$ 0.27 & -2.30 $\pm$ 0.28 & -2.41 $\pm$ 0.24 \\
+        10.75 -- 11.00 & -2.90 $\pm$ 0.39 & -2.94 $\pm$ 0.67 & -2.72 $\pm$ 0.46 & -2.41 $\pm$ 0.21 & -2.50 $\pm$ 0.38 & -2.53 $\pm$ 0.31 \\
+        11.00 -- 11.25 & -                & -3.28 $\pm$ 0.81 & -3.09 $\pm$ 0.50 & -2.65 $\pm$ 0.36 & -2.53 $\pm$ 0.24 & -2.71 $\pm$ 0.23 \\
+        11.25 -- 11.50 & -                & -                & -3.25 $\pm$ 0.64 & -2.80 $\pm$ 0.41 & -2.79 $\pm$ 0.36 & -2.75 $\pm$ 0.24 \\
+        11.50 -- 11.75 & -                & -                & -                & -3.15 $\pm$ 0.56 & -2.89 $\pm$ 0.38 & -3.10 $\pm$ 0.38 \\
+        11.75 -- 12.00 & -                & -                & -                & -                & -3.76 $\pm$ 1.91 & -3.48 $\pm$ 0.97 \\
         \hline
         $\log_{10}(L_{IR}/L_{\odot})$ & 1.20 $\leq z <$ 1.70 & 1.70 $\leq z <$ 2.00 & 2.00 $\leq z <$ 2.50 & 2.50 $\leq z <$ 3.00 & 3.00 $\leq z <$ 4.20 & 4.20 $\leq z <$ 6.00  \\
         \hline
-        10.50 -- 10.75 & -2.33 $\pm$ 0.02 & -2.47 $\pm$ 0.02 & - & - & - & - \\
-        10.75 -- 11.00 & -2.39 $\pm$ 0.02 & -2.43 $\pm$ 0.02 & -2.54 $\pm$ 0.02 & - & - & - \\
-        11.00 -- 11.25 & -2.52 $\pm$ 0.02 & -2.59 $\pm$ 0.03 & -2.58 $\pm$ 0.02 & -2.77 $\pm$ 0.03 & - & - \\
-        11.25 -- 11.50 & -2.75 $\pm$ 0.03 & -2.71 $\pm$ 0.03 & -2.73 $\pm$ 0.02 & -2.70 $\pm$ 0.02 & - & - \\
-        11.50 -- 11.75 & -2.91 $\pm$ 0.03 & -2.84 $\pm$ 0.04 & -2.97 $\pm$ 0.03 & -2.86 $\pm$ 0.03 & -3.02 $\pm$ 0.02 & - \\
-        11.75 -- 12.00 & -3.21 $\pm$ 0.05 & -2.96 $\pm$ 0.04 & -3.03 $\pm$ 0.03 & -3.07 $\pm$ 0.04 & -2.96 $\pm$ 0.02 & -3.97 $\pm$ 0.06 \\
-        12.00 -- 12.25 & -3.59 $\pm$ 0.07 & -3.03 $\pm$ 0.05 & -3.33 $\pm$ 0.05 & -3.35 $\pm$ 0.05 & -3.06 $\pm$ 0.02 & -3.71 $\pm$ 0.05 \\
-        12.25 -- 12.50 & -4.02 $\pm$ 0.12 & -3.43 $\pm$ 0.07 & -3.62 $\pm$ 0.07 & -3.63 $\pm$ 0.07 & -3.33 $\pm$ 0.03 & -3.71 $\pm$ 0.04 \\
-        12.50 -- 12.75 & -                & -3.87 $\pm$ 0.12 & -4.18 $\pm$ 0.13 & -4.11 $\pm$ 0.12 & -3.74 $\pm$ 0.05 & -3.97 $\pm$ 0.06 \\
-        12.75 -- 13.00 & -                & -                & -                & -                & -4.06 $\pm$ 0.08 & -4.18 $\pm$ 0.08 \\
-        13.00 -- 13.25 & -                & -                & -                & -                & -4.53 $\pm$ 0.13 & -4.84 $\pm$ 0.16
+        10.50 -- 10.75 & -2.32 $\pm$ 0.13 & - & - & - & - & - \\
+        10.75 -- 11.00 & -2.37 $\pm$ 0.21 & -2.43 $\pm$ 0.19 & -2.53 $\pm$ 0.14 & - & - & - \\
+        11.00 -- 11.25 & -2.51 $\pm$ 0.24 & -2.59 $\pm$ 0.20 & -2.58 $\pm$ 0.22 & - & - & - \\
+        11.25 -- 11.50 & -2.72 $\pm$ 0.34 & -2.70 $\pm$ 0.21 & -2.72 $\pm$ 0.23 & -2.69 $\pm$ 0.21 & - & - \\
+        11.50 -- 11.75 & -2.87 $\pm$ 0.38 & -2.83 $\pm$ 0.16 & -2.95 $\pm$ 0.29 & -2.85 $\pm$ 0.21 & - & - \\
+        11.75 -- 12.00 & -3.14 $\pm$ 0.44 & -2.94 $\pm$ 0.18 & -3.02 $\pm$ 0.25 & -3.04 $\pm$ 0.35 & -2.96 $\pm$ 0.17 & - \\
+        12.00 -- 12.25 & -3.49 $\pm$ 0.71 & -2.99 $\pm$ 0.26 & -3.27 $\pm$ 0.40 & -3.29 $\pm$ 0.45 & -3.05 $\pm$ 0.21 & - \\
+        12.25 -- 12.50 & -3.82 $\pm$ 0.72 & -3.31 $\pm$ 0.51 & -3.52 $\pm$ 0.51 & -3.58 $\pm$ 0.66 & -3.32 $\pm$ 0.41 & -3.71 $\pm$ 0.24 \\
+        12.50 -- 12.75 & -                & -3.81 $\pm$ 1.02 & -3.97 $\pm$ 0.91 & -3.84 $\pm$ 0.57 & -3.72 $\pm$ 0.73 & -3.97 $\pm$ 0.35 \\
+        12.75 -- 13.00 & -                & -                & -                & -                & -3.98 $\pm$ 0.52 & -4.14 $\pm$ 0.39 \\
+        13.00 -- 13.25 & -                & -                & -                & -                & -4.32 $\pm$ 0.54 & -4.84 $\pm$ 1.35 \\
+        13.25 -- 13.50 & -                & -                & -                & -                & -4.80 $\pm$ 0.87 & -
         \botrule
     \end{tabular}
     \end{center}
@@ -103,31 +82,33 @@ Sources with $D_{max}$ values that do not extend to the end of the redshift bin 
         \toprule
         $\log_{10}(L_{IR}/L_{\odot})$ & 0.00 $\leq z <$ 0.30 & 0.30 $\leq z <$ 0.45 & 0.45 $\leq z <$ 0.60 & 0.60 $\leq z <$ 0.80 & 0.80 $\leq z <$ 1.00 & 1.00 $\leq z <$ 1.20 \\
         \hline
-         8.00 --  8.25 & -2.57 $\pm$ 0.12 & -                & -                & -                & -                & - \\
-         8.25 --  8.50 & -2.64 $\pm$ 0.13 & -                & -                & -                & -                & - \\
-         8.50 --  8.75 & -2.84 $\pm$ 0.16 & -2.64 $\pm$ 0.09 & -                & -                & -                & - \\
-         8.75 --  9.00 & -2.74 $\pm$ 0.14 & -2.78 $\pm$ 0.11 & -2.58 $\pm$ 0.07 & -                & -                & - \\
-         9.00 --  9.25 & -2.60 $\pm$ 0.13 & -2.90 $\pm$ 0.13 & -2.58 $\pm$ 0.07 & -2.48 $\pm$ 0.04 & -                & - \\
-         9.25 --  9.50 & -2.84 $\pm$ 0.16 & -2.98 $\pm$ 0.14 & -2.74 $\pm$ 0.08 & -2.69 $\pm$ 0.05 & -2.46 $\pm$ 0.04 & - \\
-         9.50 --  9.75 & -                & -2.90 $\pm$ 0.13 & -2.57 $\pm$ 0.07 & -2.76 $\pm$ 0.06 & -2.58 $\pm$ 0.04 & -2.67 $\pm$ 0.04 \\
-         9.75 -- 10.00 & -                & -2.81 $\pm$ 0.11 & -2.79 $\pm$ 0.09 & -2.75 $\pm$ 0.06 & -2.91 $\pm$ 0.06 & -2.79 $\pm$ 0.05 \\
-        10.00 -- 10.25 & -                & -2.78 $\pm$ 0.11 & -2.92 $\pm$ 0.10 & -2.80 $\pm$ 0.06 & -2.94 $\pm$ 0.06 & -2.98 $\pm$ 0.06 \\
-        10.25 -- 10.50 & -                & -                & -3.12 $\pm$ 0.13 & -3.28 $\pm$ 0.11 & -3.25 $\pm$ 0.09 & -3.12 $\pm$ 0.07 \\
-        10.50 -- 10.75 & -                & -                & -                & -3.49 $\pm$ 0.14 & -                & -3.54 $\pm$ 0.12 \\
-        10.75 -- 11.00 & -                & -                & -                & -3.79 $\pm$ 0.19 & -                & -3.73 $\pm$ 0.14 \\
+         8.00 --  8.25 & -2.32 $\pm$ 0.28 & -                & -                & -                & -                & - \\
+         8.25 --  8.50 & -2.54 $\pm$ 0.17 & -2.30 $\pm$ 0.24 & -                & -                & -                & - \\
+         8.50 --  8.75 & -2.64 $\pm$ 0.32 & -2.48 $\pm$ 0.18 & -                & -                & -                & - \\
+         8.75 --  9.00 & -3.08 $\pm$ 0.56 & -2.57 $\pm$ 0.23 & -2.36 $\pm$ 0.18 & -                & -                & - \\
+         9.00 --  9.25 & -2.68 $\pm$ 0.19 & -2.90 $\pm$ 0.43 & -2.50 $\pm$ 0.19 & -2.31 $\pm$ 0.22 & -                & - \\
+         9.25 --  9.50 & -2.84 $\pm$ 0.23 & -2.94 $\pm$ 0.22 & -2.70 $\pm$ 0.35 & -2.47 $\pm$ 0.23 & -2.28 $\pm$ 0.26 & - \\
+         9.50 --  9.75 & -2.98 $\pm$ 0.26 & -2.94 $\pm$ 0.14 & -2.60 $\pm$ 0.15 & -2.71 $\pm$ 0.56 & -2.40 $\pm$ 0.28 & -2.42 $\pm$ 0.25 \\
+         9.75 -- 10.00 & -2.98 $\pm$ 0.35 & -2.98 $\pm$ 0.14 & -2.72 $\pm$ 0.18 & -2.67 $\pm$ 0.20 & -2.67 $\pm$ 0.63 & -2.58 $\pm$ 0.24 \\
+        10.00 -- 10.25 & -                & -2.87 $\pm$ 0.31 & -2.88 $\pm$ 0.20 & -2.76 $\pm$ 0.22 & -2.76 $\pm$ 0.53 & -2.78 $\pm$ 0.59 \\
+        10.25 -- 10.50 & -                & -                & -3.09 $\pm$ 0.37 & -3.09 $\pm$ 0.43 & -3.08 $\pm$ 0.66 & -2.91 $\pm$ 0.65 \\
+        10.50 -- 10.75 & -                & -                & -3.50 $\pm$ 0.53 & -3.31 $\pm$ 0.30 & -3.76 $\pm$ 1.49 & -3.20 $\pm$ 0.50 \\
+        10.75 -- 11.00 & -                & -                & -                & -3.45 $\pm$ 0.27 & -4.01 $\pm$ 0.58 & -3.46 $\pm$ 0.56 \\
+        11.00 -- 11.25 & -                & -                & -                & -3.79 $\pm$ 0.50 & -                & -3.69 $\pm$ 0.46 \\
         \hline
         $\log_{10}(L_{IR}/L_{\odot})$ & 1.20 $\leq z <$ 1.70 & 1.70 $\leq z <$ 2.00 & 2.00 $\leq z <$ 2.50 & 2.50 $\leq z <$ 3.00 & 3.00 $\leq z <$ 4.20 & 4.20 $\leq z <$ 6.00  \\
         \hline
-         9.75 -- 10.00 & -2.55 $\pm$ 0.02 & -                & -                & -                & -                & - \\
-        10.00 -- 10.25 & -2.68 $\pm$ 0.02 & -2.55 $\pm$ 0.03 & -                & -                & -                & - \\
-        10.25 -- 10.50 & -2.91 $\pm$ 0.03 & -2.67 $\pm$ 0.03 & -2.63 $\pm$ 0.02 & -                & -                & - \\
-        10.50 -- 10.75 & -3.13 $\pm$ 0.04 & -2.85 $\pm$ 0.04 & -2.76 $\pm$ 0.03 & -2.76 $\pm$ 0.03 & -                & - \\
-        10.75 -- 11.00 & -3.43 $\pm$ 0.06 & -3.02 $\pm$ 0.05 & -3.06 $\pm$ 0.04 & -2.84 $\pm$ 0.03 & -2.94 $\pm$ 0.02 & - \\
-        11.00 -- 11.25 & -4.02 $\pm$ 0.12 & -3.40 $\pm$ 0.07 & -3.13 $\pm$ 0.04 & -3.04 $\pm$ 0.04 & -3.08 $\pm$ 0.02 & - \\
-        11.25 -- 11.50 & -                & -3.64 $\pm$ 0.09 & -3.39 $\pm$ 0.05 & -3.21 $\pm$ 0.04 & -3.35 $\pm$ 0.03 & -3.77 $\pm$ 0.05 \\
-        11.50 -- 11.75 & -                & -4.03 $\pm$ 0.14 & -3.68 $\pm$ 0.07 & -3.55 $\pm$ 0.06 & -3.69 $\pm$ 0.05 & -4.14 $\pm$ 0.07 \\
-        11.75 -- 12.00 & -                & -4.29 $\pm$ 0.19 & -4.32 $\pm$ 0.15 & -3.94 $\pm$ 0.10 & -4.03 $\pm$ 0.07 & -4.27 $\pm$ 0.09 \\
-        12.00 -- 12.25 & -                & -                & -                & -4.52 $\pm$ 0.19 & -4.19 $\pm$ 0.09 & -4.78 $\pm$ 0.15
+         9.75 -- 10.00 & -2.23 $\pm$ 0.32 & -                & -                & -                & -                & - \\
+        10.00 -- 10.25 & -2.41 $\pm$ 0.30 & -2.18 $\pm$ 0.31 & -                & -                & -                & - \\
+        10.25 -- 10.50 & -2.69 $\pm$ 0.45 & -2.35 $\pm$ 0.29 & -2.26 $\pm$ 0.31 & -2.48 $\pm$ 0.13 & -                & - \\
+        10.50 -- 10.75 & -2.87 $\pm$ 0.97 & -2.62 $\pm$ 0.23 & -2.54 $\pm$ 0.28 & -2.38 $\pm$ 0.25 & -                & - \\
+        10.75 -- 11.00 & -3.18 $\pm$ 1.27 & -2.85 $\pm$ 1.34 & -2.79 $\pm$ 0.64 & -2.60 $\pm$ 0.24 & -2.61 $\pm$ 0.27 & - \\
+        11.00 -- 11.25 & -3.67 $\pm$ 1.56 & -3.15 $\pm$ 1.09 & -2.96 $\pm$ 1.07 & -3.83 $\pm$ 0.54 & -2.84 $\pm$ 0.29 & - \\
+        11.25 -- 11.50 & -3.93 $\pm$ 0.86 & -3.47 $\pm$ 0.83 & -3.18 $\pm$ 0.67 & -3.04 $\pm$ 0.73 & -3.19 $\pm$ 0.87 & -3.29 $\pm$ 0.33 \\
+        11.50 -- 11.75 & -4.12 $\pm$ 0.36 & -3.81 $\pm$ 0.75 & -3.56 $\pm$ 0.74 & -3.39 $\pm$ 0.70 & -3.57 $\pm$ 1.34 & -3.47 $\pm$ 0.34 \\
+        11.75 -- 12.00 & -                & -4.14 $\pm$ 0.61 & -3.90 $\pm$ 0.73 & -3.79 $\pm$ 0.86 & -3.98 $\pm$ 1.13 & -3.94 $\pm$ 0.29 \\
+        12.00 -- 12.25 & -                & -                & -4.44 $\pm$ 0.90 & -4.22 $\pm$ 0.86 & -4.06 $\pm$ 0.42 & -4.22 $\pm$ 1.54 \\
+        12.25 -- 12.50 & -                & -                & -                & -                & -4.57 $\pm$ 0.85 & -4.64 $\pm$ 1.74
         \botrule
     \end{tabular}
     \end{center}
@@ -144,35 +125,37 @@ Sources with $D_{max}$ values that do not extend to the end of the redshift bin 
         \toprule
         $\log_{10}(L_{IR}/L_{\odot})$ & 0.00 $\leq z <$ 0.30 & 0.30 $\leq z <$ 0.45 & 0.45 $\leq z <$ 0.60 & 0.60 $\leq z <$ 0.80 & 0.80 $\leq z <$ 1.00 & 1.00 $\leq z <$ 1.20 \\
         \hline
-         8.50 --  8.75 & -1.74 $\pm$ 0.05   & - & - & - & - & - \\
-         8.75 --  9.00 & -1.70 $\pm$ 0.04   & - & - & - & - & - \\
-         9.00 --  9.25 & -1.83 $\pm$ 0.05   & -1.77 $\pm$ 0.03  & - & - & - & - \\
-         9.25 --  9.50 & -1.83 $\pm$ 0.05   & -1.89 $\pm$ 0.04  & -1.90 $\pm$ 0.03  & - & - & - \\
-         9.50 --  9.75 & -1.93 $\pm$ 0.06   & -2.00 $\pm$ 0.04  & -2.06 $\pm$ 0.04  & -1.90 $\pm$ 0.02  & - & - \\
-         9.75 -- 10.00 & -2.02 $\pm$ 0.06   & -2.03 $\pm$ 0.05  & -2.02 $\pm$ 0.04  & -1.91 $\pm$ 0.02  & -2.06 $\pm$ 0.02  & - \\
-        10.00 -- 10.25 & -2.14 $\pm$ 0.07   & -2.22 $\pm$ 0.06  & -2.17 $\pm$ 0.04  & -2.07 $\pm$ 0.03  & -2.08 $\pm$ 0.02  & -2.25 $\pm$ 0.03 \\
-        10.25 -- 10.50 & -2.16 $\pm$ 0.08   & -2.23 $\pm$ 0.06  & -2.25 $\pm$ 0.05  & -2.10 $\pm$ 0.03  & -2.20 $\pm$ 0.03  & -2.27 $\pm$ 0.03 \\
-        10.50 -- 10.75 & -2.32 $\pm$ 0.09   & -2.23 $\pm$ 0.06  & -2.39 $\pm$ 0.05  & -2.17 $\pm$ 0.03  & -2.30 $\pm$ 0.03  & -2.38 $\pm$ 0.03 \\
-        10.75 -- 11.00 & -2.32 $\pm$ 0.09   & -2.51 $\pm$ 0.08  & -2.39 $\pm$ 0.05  & -2.28 $\pm$ 0.03  & -2.37 $\pm$ 0.03  & -2.46 $\pm$ 0.03 \\
-        11.00 -- 11.25 & -2.64 $\pm$ 0.13   & -2.66 $\pm$ 0.09  & -2.57 $\pm$ 0.07  & -2.33 $\pm$ 0.04  & -2.43 $\pm$ 0.04  & -2.64 $\pm$ 0.04 \\
-        11.25 -- 11.50 & -                  & -3.08 $\pm$ 0.15  & -2.90 $\pm$ 0.10  & -2.40 $\pm$ 0.04  & -2.50 $\pm$ 0.04  & -2.70 $\pm$ 0.04 \\
-        11.50 -- 11.75 & -                  & -                 & -3.20 $\pm$ 0.14  & -2.72 $\pm$ 0.06  & -2.52 $\pm$ 0.04  & -2.68 $\pm$ 0.04 \\
-        11.75 -- 12.00 & -                  & -                 & -                 & -3.28 $\pm$ 0.11  & -2.82 $\pm$ 0.06  & -2.95 $\pm$ 0.06 \\
-        12.00 -- 12.25 & -                  & -                 & -                 & -3.79 $\pm$ 0.19  & -3.03 $\pm$ 0.07  & -3.43 $\pm$ 0.10 \\
-        12.25 -- 12.50 & -                  & -                 & -                 & -                 & -3.76 $\pm$ 0.16  & -3.78 $\pm$ 0.15 \\
+         8.50 --  8.75 & -1.41 $\pm$ 0.05 & - & - & - & - & - \\
+         8.75 --  9.00 & -1.44 $\pm$ 0.10 & - & - & - & - & - \\
+         9.00 --  9.25 & -1.59 $\pm$ 0.15 & -1.50 $\pm$ 0.16 & - & - & - & - \\
+         9.25 --  9.50 & -1.65 $\pm$ 0.12 & -1.65 $\pm$ 0.16 & -1.60 $\pm$ 0.15 & - & - & - \\
+         9.50 --  9.75 & -1.84 $\pm$ 0.20 & -1.80 $\pm$ 0.18 & -1.79 $\pm$ 0.17 & -1.61 $\pm$ 0.10 & - & - \\
+         9.75 -- 10.00 & -1.97 $\pm$ 0.15 & -1.91 $\pm$ 0.17 & -1.83 $\pm$ 0.14 & -1.68 $\pm$ 0.14 & -1.74 $\pm$ 0.15 & - \\
+        10.00 -- 10.25 & -2.09 $\pm$ 0.12 & -2.12 $\pm$ 0.20 & -2.06 $\pm$ 0.24 & -1.87 $\pm$ 0.18 & -1.86 $\pm$ 0.16 & -1.95 $\pm$ 0.16 \\
+        10.25 -- 10.50 & -2.13 $\pm$ 0.10 & -2.20 $\pm$ 0.08 & -2.20 $\pm$ 0.18 & -1.98 $\pm$ 0.15 & -2.05 $\pm$ 0.24 & -2.09 $\pm$ 0.17 \\
+        10.50 -- 10.75 & -2.23 $\pm$ 0.12 & -2.19 $\pm$ 0.11 & -2.36 $\pm$ 0.14 & -2.09 $\pm$ 0.14 & -2.21 $\pm$ 0.17 & -2.25 $\pm$ 0.19 \\
+        10.75 -- 11.00 & -2.30 $\pm$ 0.17 & -2.48 $\pm$ 0.26 & -2.36 $\pm$ 0.10 & -2.22 $\pm$ 0.12 & -2.30 $\pm$ 0.11 & -2.38 $\pm$ 0.16 \\
+        11.00 -- 11.25 & -2.60 $\pm$ 0.41 & -2.57 $\pm$ 0.27 & -2.53 $\pm$ 0.22 & -2.27 $\pm$ 0.08 & -2.40 $\pm$ 0.08 & -2.58 $\pm$ 0.22 \\
+        11.25 -- 11.50 & -                & -3.08 $\pm$ 0.61 & -2.86 $\pm$ 0.45 & -2.36 $\pm$ 0.16 & -2.43 $\pm$ 0.07 & -2.65 $\pm$ 0.18 \\
+        11.50 -- 11.75 & -                & -                & -3.20 $\pm$ 0.44 & -2.62 $\pm$ 0.38 & -2.44 $\pm$ 0.13 & -2.60 $\pm$ 0.22 \\
+        11.75 -- 12.00 & -                & -                & -                & -3.19 $\pm$ 0.80 & -2.75 $\pm$ 0.32 & -2.87 $\pm$ 0.38 \\
+        12.00 -- 12.25 & -                & -                & -                & -3.71 $\pm$ 0.68 & -2.98 $\pm$ 0.38 & -3.36 $\pm$ 0.59 \\
+        12.25 -- 12.50 & -                & -                & -                & -                & -3.71 $\pm$ 1.21 & -3.57 $\pm$ 0.36 \\
         \hline
         $\log_{10}(L_{IR}/L_{\odot})$ & 1.20 $\leq z <$ 1.70 & 1.70 $\leq z <$ 2.00 & 2.00 $\leq z <$ 2.50 & 2.50 $\leq z <$ 3.00 & 3.00 $\leq z <$ 4.20 & 4.20 $\leq z <$ 6.00  \\
         \hline
-        10.50 -- 10.75 & -2.46 $\pm$ 0.02   & -2.64 $\pm$ 0.03  & - & - & - & - \\
-        10.75 -- 11.00 & -2.58 $\pm$ 0.02   & -2.59 $\pm$ 0.03  & -2.77 $\pm$ 0.03  & - & - & - \\
-        11.00 -- 11.25 & -2.61 $\pm$ 0.02   & -2.70 $\pm$ 0.03  & -2.79 $\pm$ 0.03  & -2.93 $\pm$ 0.03  & - & - \\
-        11.25 -- 11.50 & -2.67 $\pm$ 0.02   & -2.58 $\pm$ 0.03  & -2.76 $\pm$ 0.03  & -2.84 $\pm$ 0.03  & - & - \\
-        11.50 -- 11.75 & -2.65 $\pm$ 0.02   & -2.65 $\pm$ 0.03  & -2.76 $\pm$ 0.03  & -2.94 $\pm$ 0.03  & -3.17 $\pm$ 0.03 & - \\
-        11.75 -- 12.00 & -2.82 $\pm$ 0.03   & -2.73 $\pm$ 0.03  & -2.78 $\pm$ 0.03  & -3.01 $\pm$ 0.03  & -3.30 $\pm$ 0.03 & -3.74 $\pm$ 0.05 \\
-        12.00 -- 12.25 & -3.02 $\pm$ 0.04   & -2.87 $\pm$ 0.04  & -2.97 $\pm$ 0.03  & -3.17 $\pm$ 0.04  & -3.49 $\pm$ 0.04 & -4.03 $\pm$ 0.06 \\
-        12.25 -- 12.50 & -3.32 $\pm$ 0.05   & -3.11 $\pm$ 0.05  & -3.17 $\pm$ 0.04  & -3.34 $\pm$ 0.05  & -3.82 $\pm$ 0.06 & -4.24 $\pm$ 0.08 \\
-        12.50 -- 12.75 & -3.82 $\pm$ 0.09   & -3.39 $\pm$ 0.07  & -3.48 $\pm$ 0.06  & -3.54 $\pm$ 0.06  & -4.01 $\pm$ 0.07 & -4.91 $\pm$ 0.18 \\
-        12.75 -- 13.00 & -                  & -4.21 $\pm$ 0.18  & -3.92 $\pm$ 0.10  & -4.27 $\pm$ 0.14  & -4.43 $\pm$ 0.12 & -4.91 $\pm$ 0.18
+        10.25 -- 10.50 & -2.15 $\pm$ 0.11 & - & - & - & - & - \\
+        10.50 -- 10.75 & -2.23 $\pm$ 0.16 & -2.35 $\pm$ 0.05 & - & - & - & - \\
+        10.75 -- 11.00 & -2.41 $\pm$ 0.18 & -2.38 $\pm$ 0.09 & -2.47 $\pm$ 0.07 & - & - & - \\
+        11.00 -- 11.25 & -2.51 $\pm$ 0.11 & -2.53 $\pm$ 0.24 & -2.54 $\pm$ 0.08 & - & - & - \\
+        11.25 -- 11.50 & -2.56 $\pm$ 0.05 & -2.47 $\pm$ 0.10 & -2.57 $\pm$ 0.06 & -2.62 $\pm$ 0.13 & -2.93 $\pm$ 0.07 & - \\
+        11.50 -- 11.75 & -2.57 $\pm$ 0.09 & -2.57 $\pm$ 0.12 & -2.61 $\pm$ 0.08 & -2.77 $\pm$ 0.15 & -2.95 $\pm$ 0.10 & - \\
+        11.75 -- 12.00 & -2.73 $\pm$ 0.19 & -2.68 $\pm$ 0.15 & -2.69 $\pm$ 0.15 & -2.87 $\pm$ 0.18 & -3.09 $\pm$ 0.22 & -3.52 $\pm$ 0.25 \\
+        12.00 -- 12.25 & -2.92 $\pm$ 0.25 & -2.81 $\pm$ 0.19 & -2.90 $\pm$ 0.22 & -3.05 $\pm$ 0.22 & -3.31 $\pm$ 0.32 & -3.80 $\pm$ 0.35 \\
+        12.25 -- 12.50 & -3.23 $\pm$ 0.41 & -3.06 $\pm$ 0.29 & -3.10 $\pm$ 0.28 & -3.23 $\pm$ 0.23 & -3.64 $\pm$ 0.38 & -4.07 $\pm$ 0.40 \\
+        12.50 -- 12.75 & -3.68 $\pm$ 0.62 & -3.33 $\pm$ 0.45 & -3.38 $\pm$ 0.36 & -3.46 $\pm$ 0.38 & -3.88 $\pm$ 0.34 & -4.57 $\pm$ 0.72 \\
+        12.75 -- 13.00 & -                & -4.14 $\pm$ 1.34 & -3.82 $\pm$ 0.55 & -4.18 $\pm$ 1.19 & -4.25 $\pm$ 0.52 & -4.91 $\pm$ 0.80 \\
+        13.00 -- 13.25 & -                & -                & -4.44 $\pm$ 1.04 & -                & -4.67 $\pm$ 0.59 & -4.98 $\pm$ 0.32 
         \botrule
     \end{tabular}
     \end{center}
@@ -182,28 +165,18 @@ Sources with $D_{max}$ values that do not extend to the end of the redshift bin 
 \end{table*}
 
 \subsection{Fitting Functions}
-\begin{itemize}
-    \item \textcolor{red}{Since the LF parameters are not directly comparable using two different fitting functions, why not using the modified Schechter for all, ZFOURGE, AGN and SF?}
-    \item \textcolor{Green}{Same as before}
-\end{itemize}
-
 We first construct the bolometric IR LF using the ZFOURGE dataset. Then, using CIGALE, we decompose the luminosity into contributions from SF regions and AGN, allowing us to investigate the evolution of these components separately.
 
-To model LFs, one of the most widely used methods is the Schechter function \citep{schechter_analytic_1976}. This function is beneficial for describing the LF of galaxies because it can represent observed features, such as a power-law decline at the faint end and an exponential cutoff at the bright end. We employ the Schechter function to model the CIGALE SF LF as both \cite{fu_decomposing_2010} and \cite{wu_mid-infrared_2011} have shown that pure SF LFs fit better with a Schechter function. The Schechter function is mathematically represented by equation \ref{EQ: Shechter Function}:
-
-\begin{equation} 
-    \varphi(L) = \varphi^* \left(\frac{L}{L^*}\right)^{1-\alpha} \exp\left(-\frac{L}{L^*}\right) 
-    \label{EQ: Shechter Function}
-\end{equation}
-
-Where $\varphi(L)$ is the number of galaxies per unit volume (number density), $\varphi^*$ is the characteristic normalisation factor, $L$ is the bolometric IR (8-1000$\mu$m) luminosity, $L^*$ is the characteristic luminosity, and $\alpha$ is the faint end slope \citep{schechter_analytic_1976}. The Schechter function, however, is not the only commonly used fitting function at mid- and far-IR wavelengths. The bright end slope of the Schechter function cannot be independently varied to fit a dataset better. We make use of a modified Schechter function known as the Saunders function (\citealp{saunders_60-mum_1990}; equation. \ref{EQ: Saunders Function}) to fit our ZFOURGE total and CIGALE AGN LFs:
+To model LFs, one of the most widely used methods is the Schechter function \citep{schechter_analytic_1976}. However, the bright end slope of the Schechter function cannot be independently varied to better fit a dataset. We make use of a modified Schechter function known as the Saunders function (\citealp{saunders_60-mum_1990}; equation. \ref{EQ: Saunders Function}) to fit our LFs:
 
 \begin{equation} 
     \varphi(L) = \varphi^* \left(\frac{L}{L^*}\right)^{1-\alpha} \exp\left[-\frac{1}{2\sigma^2}\log_{10}^2\left(1+\frac{L}{L^*}\right)\right]
     \label{EQ: Saunders Function}
 \end{equation}
 
-Where the parameters are the same as the Schechter function (equation \ref{EQ: Shechter Function}), but with the introduction of $\sigma$ to vary the bright end slope. Our deep ZFOURGE data probes to fainter luminosities than often seen in the literature (e.g. \citealp{rodighiero_mid-_2010, gruppioni_herschel_2013}), thus better constraining the faint end of the LF. However, as ZFOURGE is designed to probe deeper into the universe, we lack brighter galaxies at lower redshifts. 
+Where $\varphi(L)$ is the number of galaxies per unit volume (number density), $\varphi^*$ is the characteristic normalisation factor, $L$ is the bolometric IR (8-1000$\mu$m) luminosity, $L^*$ is the characteristic luminosity, $\alpha$ is the faint end slope, and $\sigma$ is the bright end slope
+
+Our deep ZFOURGE data probes to fainter luminosities than often seen in the literature (e.g. \citealp{rodighiero_mid-_2010, gruppioni_herschel_2013}), thus better constraining the faint end of the LF. However, as ZFOURGE is designed to probe deeper into the universe, we lack brighter galaxies at lower redshifts. 
 
 % \begin{equation}
 %     D_{max} = \sqrt{\frac{L}{4 \pi F_{lim}}}
